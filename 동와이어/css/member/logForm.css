@@ -1,0 +1,65 @@
+@import "reset.css";
+
+.logBox {
+    width : 1500px;
+    min-height : 300px;
+    text-align : center;
+    margin : 0 auto;
+}
+
+.title {
+    font-size : 30pt;
+    font-weight : 800;
+    margin-bottom : 20px;
+}
+
+.bon {
+    display : flex;
+    align-items : center;
+    min-height : 600px;
+}
+
+.inputLog {
+    width : 400px;
+    height : 50px;
+    margin-top : 20px;
+}
+
+.logBtn {
+    box-sizing : border-box;
+    all : unset;
+    border : 1px solid #000000;
+    margin-top : 20px;
+    width : 406px;
+    height : 50px; 
+    color : #ffffff;
+    background-color : #4686fd;
+    font-weight : 800;
+    font-size : 15pt;
+}
+
+.logBtn:hover {
+    cursor : pointer;
+}
+
+.logService {
+    margin-top : 20px;
+}
+
+.logService .service { 
+    display : inline-block;
+    margin-left : 10px;
+    margin-right : 10px;
+}
+
+.logService .service:hover {
+    cursor : pointer;
+    color : #66c9f0;
+    border-bottom : 1px solid #66c9f0;
+}
+
+.logService .i {
+    display : inline-block;
+    font-size : 10pt;
+    margin-bottom : 10px;
+}

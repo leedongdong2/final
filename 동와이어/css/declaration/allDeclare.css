@@ -1,0 +1,203 @@
+@import "reset.css";
+
+#DtList{
+    width: 1100px;
+
+    margin: 40px auto;
+
+}
+
+
+
+.title{
+    width: 1100px;
+    display: inline-block;
+    position: relative;
+    color: #696565;
+    font-size: 15pt;
+    font-weight: 800;
+    padding-bottom: 15px;
+
+}
+.searchFrm{
+    display: inline-block;
+   position: absolute;
+    right: 0;    
+}
+
+.searchFrm input[type="search"]{
+width: 250px;
+height: 20px;
+border: 2px solid #696565;
+padding-top: 6px;
+}
+
+.searchFrm input[type="button"]{
+    all:unset;
+}
+
+.searchFrm input[type="button"]:hover{
+   cursor: pointer;
+}
+
+
+
+#items{
+    width: 1100px;
+    border-top: 2px solid #817e7e;
+    border-left: 2px solid #817e7e;
+    border-right: 2px solid #817e7e;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.itemTitle  {
+   border-bottom: 2px solid #817e7e;
+   box-sizing: border-box;
+}
+
+.itemTitle>.mid {
+
+display: inline-block;
+width: 80px;
+padding: 15px;
+text-align: center;
+font-weight: 800;
+color: #756767;
+}
+
+.itemTitle>.mname {
+    display: inline-block;
+    width: 80px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+.itemTitle>.dtDoc {
+    display: inline-block;
+    width: 350px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+    
+.itemTitle>.nal {
+    display: inline-block;
+    width: 80px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+.itemTitle>.dtCount {
+    display: inline-block;
+    width: 70px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+        
+.itemTitle>.fromUser {
+    display: inline-block;
+    width: 120px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+.itemTitle>.boardDoc {
+    display: inline-block;
+    width: 96px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+.item{
+    border-bottom: 2px solid #817e7e;
+    min-height: 50px;
+}
+
+.item>.mid {
+
+    display: inline-block;
+    width: 80px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+    
+    .item>.mname {
+        display: inline-block;
+        width: 80px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    
+    .item>.dtDoc {
+        display: inline-block;
+        width: 350px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    
+        
+    .item>.nal {
+        display: inline-block;
+        width: 80px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    
+    .item>.dtCount {
+        display: inline-block;
+        width: 70px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    
+            
+    .item>.fromUser {
+        display: inline-block;
+        width: 120px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+
+    .item>.goBoard{
+        width: 96px;
+        display: inline-block;
+        padding: 15px;
+    }
+
+    .item>.goBoard>input[type="submit"]{
+        all:unset;
+        width: 80px;
+        font-weight: 800;
+        color: #756767;
+    }
+    
+    .item>.goBoard>input[type="submit"]:hover{
+        cursor: pointer;
+        border-bottom: 2px solid #756767;
+    }
