@@ -1,0 +1,84 @@
+@import "reset.css";
+
+#confirmCertificationId {
+display : flex;
+flex-direction : column;
+align-items : center;
+margin : 40px auto;
+}
+
+.title {
+ display : block;
+ width : 550px;
+ padding-bottom : 010px;
+ border-bottom : 2px rgb(138, 138, 138) solid;
+ color : rgb(88, 85, 85);
+ font-weight : 800;
+ margin-bottom : 30px;
+}
+
+input,label,span {
+    display : block;
+}
+
+label {
+margin-bottom : 5px;
+color : teal;
+}
+
+input{
+    margin-bottom : 5px;
+}
+
+input[type="text"] {
+    width : 300px;
+    height : 40px;
+    margin-left : 8px;
+    margin-top : 8px
+}
+
+#confirmCertificationId>div>form>input[type="button"] {
+    margin-top : 20px;
+    margin-bottom :10px;
+    }
+
+
+
+input[type="button"] {
+    all : unset;
+    width : 305px;
+    height : 40px;
+    margin-left : 8px;
+    margin-top : 10px;
+    border : 1px solid #000000;
+    text-align : center;
+    color : white;
+    background-color : #4686fd;
+    font-weight : 800;
+}
+
+input[type="button"]:hover {
+    cursor : pointer;
+}
+
+
+.notice {
+    font-weight : 600;
+    margin-left : 5px;
+    color : rgb(105, 102, 105);
+}
+
+.goPwd {
+    display : block;
+    color : rgb(47, 59, 228);
+    font-size : 10pt;
+    margin-top : 10px;
+    margin-bottom : 50px;
+    margin-left : 55px;
+    width : 204px;
+}
+
+.goPwd:hover {
+ cursor : pointer;
+ border-bottom : 1px solid rgb(47, 59, 228) ;
+}

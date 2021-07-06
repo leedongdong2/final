@@ -1,0 +1,132 @@
+#blackList{
+    width: 620px;
+    margin: 40px auto;
+
+}
+
+
+
+.title{
+    width: 620px;
+    display: inline-block;
+    position: relative;
+    color: #696565;
+    font-size: 15pt;
+    font-weight: 800;
+    padding-bottom: 15px;
+
+}
+.BlackFrm{
+    display: inline-block;
+   position: absolute;
+    right: 0;    
+}
+
+
+
+.BlackFrm input[type="button"]{
+    all:unset;
+}
+
+.BlackFrm input[type="button"]:hover{
+   cursor: pointer;
+}
+
+
+
+#items{
+    width: 620px;
+    border-top: 2px solid #817e7e;
+    border-left: 2px solid #817e7e;
+    border-right: 2px solid #817e7e;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.itemTitle  {
+   border-bottom: 2px solid #817e7e;
+   box-sizing: border-box;
+}
+
+.itemTitle>.mid {
+
+display: inline-block;
+width: 150px;
+padding: 15px;
+text-align: center;
+font-weight: 800;
+color: #756767;
+}
+
+.itemTitle>.mname {
+    display: inline-block;
+    width: 80px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+.itemTitle>.dtDoc {
+    display: inline-block;
+    width: 100px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+    
+.itemTitle>.nal {
+    display: inline-block;
+    width: 150px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+
+
+.item{
+    border-bottom: 2px solid #817e7e;
+    min-height: 50px;
+}
+
+.item>.mid {
+
+    display: inline-block;
+    width: 150px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 800;
+    color: #756767;
+    }
+    
+    .item>.mname {
+        display: inline-block;
+        width: 80px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    
+    .item>.dtDoc {
+        display: inline-block;
+        width: 100px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    
+        
+    .item>.nal {
+        display: inline-block;
+        width: 150px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 800;
+        color: #756767;
+        }
+    

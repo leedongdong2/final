@@ -1,0 +1,334 @@
+@charset "UTF-8";
+@import "reset.css";
+
+/*컬러지정*/
+:root{
+    --gray:rgb(204, 204, 204);
+    --bwhite:rgb(252,252,252,0.4);
+	--carrot: rgb(240, 130, 71);
+	--light-carrot: rgba(240, 130, 71, 0.7);
+}
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#main{
+	width: 100%;
+}
+
+.borderName{
+	background-color: var(--carrot);
+	line-height: normal;
+}
+
+.borderName>p{
+	color: #fff;
+	font-family: 'twayair';
+	font-size: 22px;
+	width: 60%;
+    display: inline-block;
+    margin: 20px;
+}
+
+.borderName>a{
+	font-family: 'twayair';
+	font-size: 17px;
+	line-height: 45px;
+	float: right;
+	padding: 10px 30px;
+}
+
+/*====================== 배너 ========================*/
+
+#main #banner{
+	width: 100%;
+	height: 500px;
+	position: relative;
+	font-family:'VITRO PRIDE TTF';
+	font-size: 15px;
+}
+
+.swiper-container {
+       width: 100%;
+       height: 100%;
+       overflow: hidden;
+     }
+
+     .swiper-slide {
+       text-align: center;
+       font-size: 15px;
+       background: #fff;
+       overflow: hidden;
+
+       /* Center slide text vertically */
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   -webkit-justify-content:space-between;
+   justify-content: space-between;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   -webkit-align-items: center;
+   align-items: center;
+ }
+ 
+ .swiper-slide>a{
+ 	width: 100%;
+ 	height:100%;
+ }
+
+ .swiper-slide img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
+ 
+
+ .swiper-slide .Bigtxt {
+	font-size:28px;
+	font-family: 'twayair';
+   	position: absolute;
+   	bottom: 30px;
+   	left: 20px;
+   	right: 20px;
+   	color: #fff;
+   	text-shadow: 2px 2px rgb(0 0 0 / 80%);
+ }
+
+ #main #banner{
+	font-family:'VITRO PRIDE TTF';
+ }
+
+ .swiper-container {
+   width: 100%;
+   height: 300px;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+ .swiper-slide {
+   background-size: cover;
+   background-position: center;
+ }
+
+ .mySwiper2 {
+   height: 100%;
+   width: 60%;
+   display: inline-block;
+ }
+
+ .mySwiper {
+   height: 100%;
+   width: 39%;
+   box-sizing: border-box;
+   padding: 10px 0;
+   display: inline-block;
+ }
+
+ .mySwiper .swiper-slide {
+   width: 100%;
+   height: 25%;
+   opacity: 0.4;
+ }
+
+ .mySwiper .swiper-slide-thumb-active {
+   opacity: 1;
+ }
+
+ .mySwiper .swiper-slide img{
+   display: block;
+   width: 230px;
+   height: auto;
+   object-fit: cover;
+ }
+
+ .mySwiper .swiper-slide Smalltxt {
+   width: 50%;
+   height: 100%;
+   overflow: hidden;
+ }
+
+/*====================== 비디오 ========================*/
+
+#latest_team{
+	width: 100%;
+}
+
+#latest_team .borderName{
+background-color: var(--carrot);
+line-height: normal;
+}
+
+#latest_team .borderName p{
+color: #fff;
+font-family: 'twayair';
+font-size: 22px;
+width: 60%;
+display: inline-block;
+margin: 20px;
+}
+
+
+#latest_team #latest_all{
+	width: 100%;
+	border-left: double 4px #eee;
+	border-right: double 4px #eee;
+	border-bottom: double 4px #eee;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+#main #video #video-wrap .video-item .video-item_link{
+	border: none;
+    display: block;
+    padding: 20px;
+    position: relative;
+}
+
+#latest_team #latest_all #latest #latest_bast{
+	width: 300px;
+}
+
+#latest_team #latest_all #latest #latest_bast img{
+	border: none;
+	max-width: 100%;
+    height: auto;
+}
+
+#latest_team #latest_all #latest #latest_name h2{
+	font-family:'VITRO PRIDE TTF';
+	font-size: 17px;
+	line-height: 150%;
+	font-weight: bold;
+}
+
+
+/*====================== 게시판 공통 ========================*/
+#main #comu, #main #match{
+	width: 100%;
+	margin: 80px auto;
+}
+#main .title{
+	font-family:'VITRO PRIDE TTF';
+	border-top: 4px double #ccc;
+	border-bottom : 4px double #ccc;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin: 10px auto 0;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#main .items .item{
+	font-family:'VITRO PRIDE TTF';
+	font-size: 16px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+#main .items{
+	border-bottom: 4px solid #ccc;
+}
+
+#main .items .item:hover{
+	background-color: rgba(240, 130, 71, 0.3);
+	transition: background-color, 0.5s;
+}
+
+/*====================== 자유 ========================*/
+
+#comu .title .rnum, #comu .items .item .rnum{
+	width: 9%;
+	text-align: center;
+	display: inline-block;
+}
+#comu .title .subject, #comu .items .item .subject{
+	text-align: center;
+	width: 40%;
+	display: inline-block;
+}
+#comu .title .mid, #comu .items .item .mid{
+	text-align: center;
+	width: 40%;
+	display: inline-block;
+}
+#comu .title .hit, #comu .items .item .hit{
+	width: 9%;
+	display: inline-block;
+	text-align: center;
+}
+
+/*====================== 매칭 ========================*/
+#match .title .rnum, #match .items .item .rnum{
+	width: 4%;
+	text-align: center;
+	display: inline-block;
+}
+
+#match .title .state, #match .items .item .state{
+	width: 15%;
+	text-align: center;
+	display: inline-block;
+}
+
+#match .title .region, #match .items .item .region{
+	width: 15%;
+	text-align: center;
+	display: inline-block;
+}
+
+#match .title .sort, #match .items .item .sort{
+	width: 20%;
+	text-align: center;
+	display: inline-block;
+}
+
+#match .title .subject, #match .items .item .subject{
+	width: 28%;
+	text-align: center;
+	display: inline-block;
+}
+
+#match .title .mid, #match .items .item .mid{
+	width: 14%;
+	text-align: center;
+	display: inline-block;
+}

@@ -1,0 +1,62 @@
+@charset "UTF-8";
+  
+       
+.h1 {
+	display : block; 
+	padding : 10px; 
+	font-size : 30px;
+	 margin-left : 250px;
+	 }
+#input {
+	margin-left : 350px; 
+	padding : 20px; 
+	border : 2px solid #dddddd; 
+	width : 800px; 
+	font-size : 15pt; 
+	outline: none;
+	}
+#btnZone {
+	margin-left: 350px;
+	}
+#btnmodify {
+	padding: 2px 10px; 
+	position: relative; 
+	left: 670px;
+	}
+#btnupload {
+	padding: 2px 10px; 
+	position: relative; 
+	left: 680px;
+	}
+#btncancle {
+	padding: 2px 10px; 
+	position: relative; 
+	left: 690px;
+	}
+#sub_v {
+	margin-left: 405px;
+	}
+#iframe_video {
+	width: 750px; 
+	height: 450px;
+	}
+textarea {
+	margin-left: 350px; 
+	margin-top: 20px; 
+	width: 842px; 
+	height: 400px; 
+	resize: none; 
+	font-size: 15px; 
+	padding: 5px; 
+	outline: none;
+	}
+.clear {
+	clear: both;
+	}
+label {
+	position: relative; 
+	background-color: #95c9ec; 
+	border-radius: 5px; 
+	padding: 6px;
+	}
+	

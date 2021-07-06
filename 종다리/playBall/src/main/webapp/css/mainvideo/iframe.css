@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 5%;
+  
+}
+
+iframe1 {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 200%;
+  height: 100%;
+}
+
+#sub_video {
+	width: 1420px; 
+height: 300px; 
+margin:10px;
+
+}
+.the_view .iframe{
+	margin-right: 15px;}
+h2 {
+	font-size: 40px;
+	 float: left;}
+.input_btn {
+	float: right; 
+background: #cacaca; 
+border: none; 
+cursor: pointer;}
+#the_view {
+	width: 1380px; 
+height: 20px;}
+.h1 {
+	display:block;
+	padding:10px;
+	font-size:30pt;
+	text-align:center;}
+

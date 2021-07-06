@@ -1,0 +1,125 @@
+@charset "UTF-8";
+@import "reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#market{
+	width: 100%;
+}
+
+#market #frm_market{
+	width: 100%;
+	position: relative;
+}
+
+#market h2{
+	font-size: 200%;
+	line-height: 300%;
+	font-weight: bold;
+}
+
+/* =========== 목록:search ============ */
+#market #frm_market #findZone{
+	float : right;
+}
+
+#market #frm_market .content-grid{
+	margin-top: 2em;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+#market #frm_market .grid-item {
+    margin: 0 auto 2em;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;/*450*/
+}
+
+#market #frm_market .grid-item .grid-item_link {
+    border: none;
+    display: block;
+    padding: 20px;
+}
+
+#market #frm_market .grid-item .grid-item_img img{
+	border: none;
+	max-width: 100%;
+    height: auto;
+}
+
+#market #frm_market .grid-item .grid-item_txt h2{
+	font-size: 150%;
+	line-height: 200%;
+}
+
+#market #frm_market #pageZone{
+	margin-left: 46%;
+}
+
+/* ================= view ===================== */
+#frm_manage{
+	display: none;
+    width: 100%;
+    height: 950px;
+    position: absolute;
+    left: 0px;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.7);
+    top: 0px;
+    font-family:'VITRO PRIDE TTF';
+}
+#frm_manage h2{
+	font-size: 35px;
+	font-weight: bold;
+	text-align: center;
+	margin: 80px 0 20px;
+}
+#frm_manage table{
+	width: 50%;
+	margin: auto;
+}
+#frm_manage table th{
+	padding-bottom: 15px;
+	font-size: 22px;
+	font-weight: bold;
+	border-bottom : 6px double #ccc;
+}
+
+#frm_manage table tr:hover{
+	background-color: rgba(240, 130, 71, 0.3);
+	transition: background-color, 0.7s;
+}
+#frm_manage table td{
+	padding: 10px 0px;
+	font-size: 18px;
+	border-bottom: 2px solid #ccc;
+}
+
+#frm_manage #page1, #frm_manage #tableBtn{
+	font-family: 'VITRO PRIDE TTF';
+    margin: auto;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    width: 11%;
+}

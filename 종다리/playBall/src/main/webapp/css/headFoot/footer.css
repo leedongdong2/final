@@ -1,0 +1,66 @@
+@charset "UTF-8";
+@import "reset.css";
+
+@font-face {
+	font-family:'VITRO CORE TTF';
+	src: url('../font/VITRO-CORE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-CORE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 코어 */
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+
+/*footer*/
+#footer footer{
+	margin: 30px 20px;
+	border-top: 1px solid rgba(204,204,204,0.7);
+	position: relative;
+	font-size: 15px;
+}
+#footer #contact{
+	text-align: center;
+    margin: 30px auto 0px;
+    font-family: 'twayair';
+    font-weight: lighter;
+}
+
+#footer #contact h3{
+	font-size: 15px;
+    margin-top: 17px;
+}
+
+#footer .sns{
+	font-size: 15px;
+	position: absolute;
+    top: 108%;
+    left: 48%;
+}

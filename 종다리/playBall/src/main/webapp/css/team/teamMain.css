@@ -1,0 +1,98 @@
+@charset "UTF-8";
+@import "reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#team{
+	width: 100%;
+	margin: auto;
+}
+#team h1{
+	font-size: 30px;
+	margin-top : 10px;
+	font-family: 'twayair';
+}
+
+#team label{
+	font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#honor_img {width: 300px; height: 480px; margin-top: 10px;	}
+#honor_img > img{width: 140px; height: 120px; border-radius: 15px; float: left;}
+#honor_img > #p > p {width: 240px; margin-top: 10px;}
+#teamName {float: left;}
+hr {margin-bottom: 20px;}
+#my_team {float: left; width: 300px; height: 130px;}
+#my_team > p {font-size: 20px;}
+#list_team {width: 200px; height: 250px; margin-top: 20px;}
+#honor_bast {width: 700px; height: 500px; float: right;}
+#honor_bast > p {font-size: 23px;}
+#name {margin-top: 10px;}
+#team_number {margin-top: 10px;}
+#bast > img {width: 120px; height: 120px; border-radius: 15px; float: left; margin-top: 10px;}
+#bast > p {width: 20px; height: 142px; line-height: 142px; float: left; margin: 0 10px 0 20px;}
+#team_name {line-height: 50px; width: 490px; float: left; margin: 20px 0 0 30px;}
+#number {height: 142px; border: solid 1px; margin: 10px 0; border-radius: 40px;}
+#latest {width: 230px; height: 142px; margin: 10px 0; display: inline-block; margin: 0 5px;}
+#latest_team {margin-top: 20px;}
+#latest_team > label > b{font-size: 30px;}
+#latest_bast > img {width: 100px; height: 100px; border-radius: 15px; float: left; margin-top: 20px; margin-left: 10px;}
+#latest_bast > p {width: 20px; height: 142px; line-height: 142px; float: left; margin: 0 10px 0 20px;}
+#latest_name {line-height: 50px; width: 80px; float: left; margin: 20px 0 0 30px;}
+#latest_all {text-align: center;}
+#job_offer_all {margin-top: 30px;}
+#job_offer_all > label > b{font-size: 30px;}
+#head_search {position: relative; bottom: 4px; float: right;}
+#head_search > img {width: 18px; transform: scaleX(-1); position: relative; top: 5.4px; right: 220px;}
+#job_offer_all > span {float: right;}
+#select {margin-right: 25px; float: right;}
+#job_offter {width: 965px; padding: 10px 15px; border: solid 1px; border-radius: 10px;}
+#job_offter > div {display: inline-block;}
+#job_offter > .span {width: 80px;}
+#job_offter > .team_namel {width: 170px;}
+
+#Free_Board {width: 900px; padding: 10px 15px; border: solid 1px; border-radius: 10px; margin: 5px auto 20px;}
+#con-tents > div {display: inline-block;}
+#con-tents > .span {width: 80px;}
+#con-tents	 > .team_namel {width: 170px;}
+
+#title {width: 1000px; height: 55px; line-height: 55px;}
+#span_turn {width: 865px; height: 55px; border-bottom: 2px solid #ccc;}
+#span_turn > #span1 {float: left; width: 90px; height: 55px; text-align: center;}
+#span_turn > #span2 {float: left; width: 100px; height: 55px; text-align: center;}
+#span_turn > #span3 {float: left; width: 100px; height: 55px; text-align: center;}
+#span_turn > #span4 {float: left; width: 100px; height: 55px; text-align: center;}
+#span_turn > #span5 {float: left; width: 100px; height: 55px; text-align: center;}
+#span_turn > #span6 {float: left; width: 150px; height: 55px; text-align: center;}
+#span_turn > #span7 {float: left; width: 120px; height: 55px; text-align: center;}
+#span_turn > #span8 {float: left; width: 100px; height: 55px; text-align: center;}
+#div {width: 900px; border: solid 1px gray; text-align: center;}
+#Contents {width: 900px; height: 30px; margin: 10px 0;}
+#Contents > div > span1 {float: left; width: 90px; height: 20px; text-align: center;}
+#Contents > div > span2 {float: left; width: 100px; height: 20px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+#Contents > div > span3 {float: left; width: 100px; height: 20px; text-align: center;}
+#Contents > div > span4 {float: left; width: 100px; height: 20px; text-align: center;}
+#Contents > div > span5 {float: left; width: 100px; height: 20px; text-align: center;}
+#Contents > div > span6 {float: left; width: 150px; height: 20px; text-align: center;}
+#Contents > div > span7 {float: left; width: 120px; height: 20px; text-align: center;}
+#Contents > div > span8 {float: left; width: 100px; height: 20px; text-align: center; background-color: #d2d2d2; border-radius: 5px;}
+#View_more {position: relative; left: 78%;}
+#V_more {position: relative; left: 87%;}
+.clear {clear: both;}
+

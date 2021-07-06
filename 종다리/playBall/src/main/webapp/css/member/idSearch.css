@@ -1,0 +1,114 @@
+@import "reset.css";
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#idSearch {
+font-family:'VITRO PRIDE TTF';
+display : flex;
+flex-direction : column;
+align-items : center;
+margin : 40px auto;
+}
+
+.title {
+ display : block;
+ width : 550px;
+ padding-bottom : 010px;
+ border-bottom : 2px rgb(138, 138, 138) solid;
+ color : rgb(88, 85, 85);
+ font-weight : 800;
+ margin-bottom : 30px;
+}
+
+input,label,span {
+    display : block;
+}
+
+label {
+margin-bottom : 5px;
+color : rgb(240, 130, 71);
+}
+
+input{
+    margin-bottom : 5px;
+}
+
+input[type="text"] {
+    width : 300px;
+    height : 40px;
+    margin-left : 8px;
+    margin-top : 8px;
+}
+
+#idSearch>div>form>input[type="button"] {
+    margin-top : 20px;
+    margin-bottom :10px;
+    }
+
+
+
+input[type="button"] {
+    all : unset;
+    width : 305px;
+    height : 40px;
+    margin-left : 8px;
+    margin-top : 10px;
+    border : 1px solid #000000;
+    text-align : center;
+    color : white;
+    background-color: rgb(240, 130, 71);
+    font-weight : 800;
+    font-family: 'twayair';
+}
+
+input[type="button"]:hover {
+    cursor : pointer;
+}
+
+
+.notice {
+    font-weight : 600;
+    margin-left : 5px;
+    color : rgb(105, 102, 105);
+}
+
+.goPwd {
+    display : block;
+    color: rgb(240, 130, 71);
+    font-size : 10pt;
+    margin-top : 10px;
+    margin-bottom : 50px;
+    margin-left : 55px;
+    width : 204px;
+}
+
+.goPwd:hover {
+ cursor : pointer;
+ border-bottom : 1px solid rgb(240, 130, 71) ;
+}

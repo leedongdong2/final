@@ -1,0 +1,158 @@
+@charset "UTF-8";
+@import "/reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#main{
+	font-family:'VITRO PRIDE TTF';
+	display:inline-block;
+	width:100%;
+	background-color:rgb(252, 252, 252);
+}
+
+#main span{
+	display:block;
+	margin-top:10px;
+}
+
+#main #back{
+	width: 140px;
+	height: 45px;
+	font-family: 'twayair';
+	font-size: 17px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	  font-weight: bold;
+	  color: #000;
+	  background-color: #fff;
+	  border: none;
+	  border-radius: 45px;
+	  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	  transition: all 0.3s ease 0s;
+	  cursor: pointer;
+	  outline: none;
+	  margin-right: 30px;
+}
+
+#main #back:hovver{
+	background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.item_name{
+	font-size:30pt;
+}
+
+#btn_zone{
+	text-align:center;
+}
+
+#btn_zone #btn_modify, #btn_zone #btn_delete{
+	width: 140px;
+	height: 45px;
+	font-family: 'twayair';
+	font-size: 17px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	  font-weight: bold;
+	  color: #000;
+	  background-color: #fff;
+	  border: none;
+	  border-radius: 45px;
+	  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	  transition: all 0.3s ease 0s;
+	  cursor: pointer;
+	  outline: none;
+	  margin-right: 30px;
+}
+#btn_zone #btn_modify:hover, #btn_zone #btn_delete:hover{
+	background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
+#shell{
+	padding: 0px 0px 0px 21%;
+	
+}
+
+.shell2{
+	width:70%;
+	height:400px;
+	background-color:#fff;
+}
+
+#item{
+	width:70%;
+	background-color:#fff;
+	padding: 0px 0px 15px 10%;
+	margin-top:-102px;
+}
+
+.top{
+	display:inline-block;
+	width:100%;
+	height:320px;
+	overflow:hidden;
+}
+
+#title{
+	display: inline-block;
+    width: 500px;
+    height: 100px;
+    text-align: center;
+    background-color: #fff;
+    position: relative;
+    top: -102px;
+    left: 91px;
+}
+
+#item h2{
+	font-family: 'twayair';
+	display:inline-block;
+	font-size: 17pt;
+    font-weight: bold;
+}
+
+#reserv{
+	display:inline-block;
+	width:70%;
+	height:400px;
+	 background-color: #fff;
+	 margin-top:10px;
+}
+
+span{
+	word-break:break-all;
+}

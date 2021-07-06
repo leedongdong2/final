@@ -1,0 +1,60 @@
+@import "reset.css";
+
+
+
+#myPage {
+  margin : 40px auto;
+}
+
+#info {
+	margin-left : 650px;
+	margin-top : 30px;
+}
+
+#myPage .title {
+    text-align : center;
+    border-bottom : 1px solid #6d6b6b;
+    margin : 0 auto;
+    color : #6d6b6b;
+    font-weight : 700;
+    padding : 15px;
+}
+
+
+.label {
+	display : inline-block;
+	width : 80px;
+	margin-bottom : 10px; 
+	padding : 15px;
+	text-align : center;
+	
+	
+}
+
+.block {
+	display : block;
+	margin-left : 100px;
+	padding : 15px;
+}
+
+.btnZone {
+margin-top : 30px;
+margin-left : 625px;
+}
+
+.btnZone .signBtn {
+    all : unset;
+    display : block;
+    width : 340px;
+    height : 50px;
+    text-align : center;
+    margin-top : 5px;
+    color : white;
+    font-size : 15pt;
+    font-weight : 700;
+    background-color : rgb(170, 163, 163);
+}
+
+.btnZone .signBtn:hover {
+    cursor : pointer;
+}
