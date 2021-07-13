@@ -1,0 +1,238 @@
+@charset "UTF-8";
+@import "reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#team{
+	width: 100%;
+	margin: auto;
+	font-family: 'VITRO PRIDE TTF';
+}
+#team h1{
+	margin-top: 30px;
+    margin-left: 25px;
+    font-size: 32px;
+    font-family: 'twayair';
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+#honor_img{width: 100%; height: 480px; margin-top: 10px;	}
+#honor_img>img{width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    float: left;
+    margin: 10px 33% 35px;}
+#honor_img>#intro{
+	    width: 80%;
+    margin: 10px auto;
+}
+
+#honor_img>#intro>fieldset{
+	border: 1px solid #ddd;	
+	min-height: 100px;
+	    padding: 10px;
+    text-align: center;
+}
+#honor_img>#intro>fieldset>legend{
+	font-weight: bold;
+}
+#teamName{	    width: 80%;
+    margin: 10px auto;}
+hr{margin-bottom: 20px;}
+#my_team{    float: left;
+    width: 50%;
+    height: 810px;}
+
+#my_team:hover{
+	background-color: rgba(240, 130, 71, 0.4);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+    
+
+#my_team #team_thumb{
+	width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#my_team #team_thumb img{
+	width: 80%;
+    height: auto;
+    margin: 30px 10%;
+}
+
+#my_team #team_thumb .none{
+	margin-top: 20px;
+	font-size: 20px;
+    line-height: 50px;
+}
+
+#my_team>p {    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
+    font-family: 'twayair';}
+#my_team #lmid{
+	    font-size: 20px;
+    font-family: 'VITRO PRIDE TTF';
+    margin: 0 0 20px 10%;
+    font-weight: 600;
+}
+
+
+#teamMemberTitle{
+	font-weight: 600;
+    font-size: 17px;
+    line-height: 34px;
+    width: 80%;
+    margin: 15px auto;
+    text-align: center;
+    border-bottom: 1px solid #dd6f4f;
+}
+
+
+#teamMemberTitle .num, #list_team .item .num{
+	width: 18%;
+    display: inline-block;
+    text-align: center;
+}
+
+#teamMemberTitle .name, #list_team .item .name{
+	width: 30%;
+    display: inline-block;
+    text-align: center;
+}
+
+#teamMemberTitle .email, #list_team .item .email{
+	width: 50%;
+    display: inline-block;
+    text-align: center;
+}
+
+#list_team {    
+	width: 80%;
+    height: 250px;
+    margin: 20px auto;}
+    
+#list_team .item{
+	margin-bottom: 10px;
+}
+
+#honor_bast {width: 50%; height: 500px; float: right;}
+#honor_bast>p {font-size: 25px;
+    font-family: 'twayair';
+    line-height: 50px;
+    text-align: center;}
+#name {margin-top: 10px;}
+#team_number {margin-top: 10px;}
+#bast>img {width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    float: left;
+    margin: 10px 20px 0px 30px;}
+#bast>p {width: 40px;
+    height: 142px;
+    line-height: 142px;
+    float: left;
+    margin: 0 20px 0 30px;
+    font-size: 22px;
+    font-family: 'twayair';}
+#team_name {    line-height: 51px;
+    width: 325px;
+    float: left;
+    margin: 10px 0 0 30px;
+    font-size: 20px;
+    font-family: 'VITRO PRIDE TTF';
+    font-weight: 600;}
+#number {    height: 130px;
+    border: solid 2px #aab;
+    margin: 10px 0;
+    border-radius: 7px 30px 30px 7px;}
+    
+#number:hover{
+	cursor: pointer;
+	border: solid 2px rgb(240, 130, 71);
+	transition: all 0.5s;
+}
+#latest { display: inline-block; width: 300px;}
+#latest:hover{
+	background-color: rgba(240, 130, 71, 0.4);
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+#latest_team {margin-top: 20px;}
+#latest_team > label > b{font-size: 30px;}
+#latest_bast > img {width: 100px; height: 100px; border-radius: 15px; float: left; margin-top: 20px; margin-left: 10px;}
+#latest_bast > p {width: 20px; height: 142px; line-height: 142px; float: left; margin: 0 10px 0 20px;}
+#latest_name {line-height: 50px;
+    width: 105px;
+    float: left;
+    margin: 20px 0 20px 10px;}
+#latest_all {text-align: center;display: flex;
+    width: 100%;
+    justify-content: space-around;}
+#job_offer_all {margin-top: 30px;}
+#job_offer_all>label>b{font-size: 30px;}
+#head_search {position: relative; bottom: 4px; float: right;}
+#head_search>img {width: 18px; transform: scaleX(-1); position: relative; top: 5.4px; right: 220px;}
+#job_offer_all>span {float: right;}
+#select {margin-right: 25px; float: right;}
+#job_offter {width: 965px; padding: 10px 15px; border: solid 1px; border-radius: 10px;}
+#job_offter>div {display: inline-block;}
+#job_offter>.span {width: 80px;}
+#job_offter>.team_namel {width: 170px;}
+
+#V_more {  width: 100px;
+    height: 45px;
+    font-family: 'VITRO PRIDE TTF';
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 18%);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    float: right;
+  }
+  
+#V_more:hover{
+    background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.5);
+  color: #fff;
+  transform: translateY(-7px);
+  }
+  
+.clear {clear: both;}
+

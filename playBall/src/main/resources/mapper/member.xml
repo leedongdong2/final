@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MemberMapper">
+
+<insert id="insert" parameterType="vo.MemberVo">
+INSERT INTO member(mid,ps,password,name,phone,post,address,address2,email,posit,point,pointc) 
+values(#{mid},#{ps},#{password},#{name},#{phone},#{post},#{address},#{address2},#{email},#{posit},300,0)
+
+</insert>
+
+<select id="duplicatedId" parameterType="String" resultType="Integer">
+   SELECT count(mid) FROM MEMBER WHERE mid = #{_parameter}
+</select>
+
+<select id="findSalt" parameterType="String" resultType="String">
+  select ps from member where mid = #{_parameter}
+</select>
+
+<select id="findUser" parameterType="vo.MemberVo" resultType="Integer">
+  select count(mid) from member where mid = #{mid} and password = #{password}
+</select>
+
+<select id="myPageInfo" parameterType="String" resultType="vo.MemberVo">
+ select name,point,reports,phone,email,post,address,address2,tid from member where mid = #{_parameter} 
+</select>
+
+<select id="modifyPageInfo" parameterType="String" resultType="vo.MemberVo">
+ select name,phone,post,address,address2,email,posit from member where mid = #{_parameter}
+</select>
+
+<select id="confirmPassword" parameterType="String" resultType="Integer">
+ select count(password) from member where password = #{_parameter}
+</select>
+
+
+
+<select id="confirmUser" parameterType="vo.MemberVo" resultType="Integer">
+  select count(email) from member
+  <where>
+     <choose>
+      
+       <when test="name != null and email != null ">
+          name = #{name} and email = #{email}
+       </when>
+       
+       <when test=" mid != null and email != null ">
+            mid = #{mid} and email = #{email} 
+       </when>
+       
+       <otherwise>
+          mid = ''
+       </otherwise>
+     
+     </choose>
+  </where>
+</select>
+
+<select id="findId" parameterType="vo.MemberVo" resultType="String">
+select mid from member where name= #{name} and email = #{email}
+</select>
+
+<select id="findUserTeam" parameterType="String" resultType="String">
+select tid from member where mid = #{_parameter}
+</select>
+
+<update id="update" parameterType="vo.MemberVo">
+  update member
+       <set>
+        <choose>
+        <when test="password == null">
+          name = #{name}, phone = #{phone}, post = #{post}, address = #{address},
+          address2 = #{address2}, email = #{email}, posit = #{posit}
+        </when>
+        <when test="password != null">
+          name = #{name}, ps =#{ps} ,password = #{password}, phone = #{phone}, post = #{post},
+          address = #{address}, address2 = #{address2}, email = #{email}, posit = #{posit}
+        </when>
+        </choose>
+        </set>
+    where mid = #{mid}
+</update>
+
+<update id="issuePwd" parameterType="vo.MemberVo">
+  update member set ps = #{ps}, password = #{password} where mid = #{mid}
+</update>
+
+<update id="updateCntMemberM" parameterType="String">
+   update team set cntmember = cntmember-1 where tid = #{_parameter}
+</update>
+
+<delete id="delete" parameterType="String">
+  DELETE FROM MEMBER WHERE mid = #{_parameter}
+</delete>
+
+<delete id="deleteTeamMember" parameterType="String">
+  DELETE FROM TEAMMEMBER WHERE mid = #{_parameter}
+</delete>
+
+</mapper>

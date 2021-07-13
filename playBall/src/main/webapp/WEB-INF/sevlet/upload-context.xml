@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+ <context:annotation-config/>  
+
+
+<bean id="upLoadController" class="controller.FileUpLoadController"></bean>
+<bean id="teamControllerUpload" class="controller.Team"></bean>
+<bean id="teamServiceUpload" class="service.TeamServiceImpl"></bean>
+
+ <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="31457280" /> <!--약 10mb 제한 -->
+        <property name="defaultEncoding" value="utf-8" />    <!-- 인코딩 -->
+    </bean>
+    
+    </beans>

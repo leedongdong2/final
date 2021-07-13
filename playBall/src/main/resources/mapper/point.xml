@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PointMapper">
+
+<select id="findPointCount" parameterType="String" resultType="Integer">
+  SELECT pointc FROM MEMBER WHERE mid= #{_parameter}
+</select>
+
+<update id="updatePoint" parameterType="String">
+   UPDATE MEMBER SET pointc = pointc + 1,point = point + 20 WHERE mid = #{_parameter}
+</update>
+
+<update id="payPoints" parameterType="String">
+  update member set point = point - 20 where mid = #{_parameter}
+</update>
+
+<update id="resetPointCount">
+  UPDATE MEMBER SET pointc = 0
+</update>
+
+
+</mapper>

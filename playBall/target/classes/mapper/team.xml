@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Team">
+	<!-- 팀등록 -->
+	<insert id="registerTeam" parameterType="vo.TeamVo">
+		INSERT INTO team(serial, tid, mid, pic, intro, hit, cntMatch ,cntMember) 
+		values(seq_team.nextval, #{tid}, #{mid}, #{pic}, #{intro}, 0, 0,0)
+	</insert>
+	
+	<!-- 팀 serial가져오기 -->
+	<select id="bringSerial" resultType="int">
+		select seq_team.currval from dual
+	</select>
+   
+   <!-- 팀명 가져오기 -->
+   <select id = "bringTid" parameterType = "int" resultType= "String">
+		select tid from team where serial = #{_parameter}
+   </select>
+	
+	<!-- 멤버정보가져오기 -->
+	<select id = "bringUserInfo" parameterType= "String" resultType = "vo.TeamMemberVo">
+		SELECT mid, posit, email from member where mid = #{_parameter}
+	</select>
+	
+	<!-- teamMember 정보 입력-->
+	<insert id = "insertTeamMember" parameterType = "vo.TeamMemberVo">
+		INSERT INTO teammember(tid, mid, posit, jDate, email, mType) 
+		values(#{tid}, #{mid}, #{posit}, sysdate, #{email}, 1)
+	</insert>
+		
+	<!-- member테이블에 팀입력, 수정 -->
+	<update id = "updateTid" parameterType= "vo.TeamMemberVo">
+		UPDATE member SET tid = #{tid} WHERE mid = #{mid}
+	</update>
+	
+	<!-- 팀 테이블 내 멤버 수 세기 -->
+	<select id = "countMember" parameterType = "String" resultType ="vo.TeamVo">
+		SELECT count(mid) cntMember, tid from teamMember where tid = #{_parameter} and mType = 1 group by tid
+	</select>
+	
+	<!-- 팀테이블의 멤버수 업데이트 -->
+	<update id = "cntMemberUpdate" parameterType = "vo.TeamVo">
+		UPDATE Team SET cntMember = #{cntMember} where tid = #{tid}
+	</update>
+	
+	
+	<!-- ==================================== -->
+	
+	<!-- 팀명 중복체크 -->
+	<select id ='checkTid' parameterType="String" resultType="Integer">
+		SELECT count(tid) FROM team WHERE tid = #{_parameter}
+	</select>
+	
+	<!-- 팀페이지 연산: 검색해서 나오게 -->
+	<select id = 'totListTeam' parameterType="page.TeamPage" resultType="Integer">
+		select count(serial) from team
+		<where>
+		  <if test="findStr != '' ">
+		    tid like '%${findStr}%'
+	  		or intro like '%${findStr}%'
+	  		or mid like '%${findStr}%'
+		  </if>
+		</where>
+	</select>
+	
+	<!-- 팀리스트 가져오기 -->
+	<select id= 'selectTeam' parameterType="page.TeamPage" resultType="vo.TeamVo">
+	  SELECT * FROM(
+	  SELECT rownum rno, t.* from(
+	    SELECT serial, tid, mid, pic , cntMember FROM team
+		    <where>
+			  <if test="findStr != '' ">
+			    tid like '%${findStr}%'
+		  		or intro like '%${findStr}%'
+		  		or mid like '%${findStr}%'
+			  </if>
+			</where>
+			order by serial DESC
+	      )t
+	   )WHERE rno BETWEEN #{startNo} AND #{endNo}
+   </select>
+   
+   <!--  팀 상세보기 -->
+	<select id="viewTeam" parameterType="Integer" resultType="vo.TeamVo">
+	  	SELECT tid,pic,intro,hit,mid FROM TEAM WHERE SERIAL = #{_parameter}
+	</select>
+	
+	<select id="findTeamInfo" parameterType="String" resultType="vo.TeamVo">
+	   select serial,pic,tid,cntmatch,intro,mid from team where tid = #{_parameter}
+	</select>
+    
+    <!-- 매칭횟수 랭크찾기  -->
+    <select id="findTeamRank" resultType="vo.TeamVo">
+      SELECT teamRank.serial serial,teamRank.pic pic,teamRank.tid tid,teamRank.cntmatch CNTMATCH,teamRank.teamRANK teamRank from(
+		SELECT serial,pic,tid,CNTMATCH ,ROW_NUMBER() over(ORDER BY CNTMATCH desc) teamRank FROM team ORDER BY teamRank
+		)teamRank WHERE teamRank BETWEEN 1 AND 5
+    </select>
+    
+    <!-- 새로운팀 조회 -->
+    <select id="newTeam" resultType="vo.TeamVo">
+    SELECT NEWTEAM.serial serial,NEWTEAM.pic pic,NEWTEAM.tid tid,NEWTEAM.mid mid,NEWTEAM.rno rno from
+	 (SELECT serial,pic,tid,mid,ROW_NUMBER() OVER(ORDER BY serial DESC) rno FROM team)newTeam
+	WHERE rno BETWEEN 1 AND 5
+    </select>
+    
+    <select id="findSaveFileName" resultType="String" parameterType="String">
+        SELECT pic FROM team WHERE tid = #{_parameter}    
+    </select>
+    
+    <update id="modifyTeam" parameterType="vo.TeamVo">
+       UPDATE team SET pic = #{pic},INTRO = #{intro} WHERE tid = #{tid}  
+    </update>
+    
+    
+	<!-- 팀멤버 상세보기 -->	
+   <select id="selectTeamMember" parameterType="String" resultType="vo.TeamMemberVo">
+   	SELECT mid,posit,email,jDate FROM TEAMMEMBER WHERE tid = #{_parameter} and mType = 1
+   	order by jDate ASC, mid ASC
+   </select>
+		
+	<!-- 조회수 증가 -->
+	<update id="teamHitUp" parameterType='Integer'>
+		UPDATE team set hit=hit+1 WHERE serial = #{_parameter}
+	</update>
+	
+	<!-- 가입전 가입중복확인 -->
+	<select id = "checkJoinList" parameterType = 'vo.TeamMemberVo' resultType = "Integer">
+		select count(mid) from teamMember where tid = #{tid} and mid = #{mid}
+	</select>
+	
+
+	
+	<!-- 가입신청멤버입력 -->
+	<insert id = "insertJoinMember" parameterType = "vo.TeamMemberVo">
+		INSERT INTO teamMember(tid, mid, posit, jDate, email, mType) 
+		values(#{tid}, #{mid}, #{posit}, sysdate, #{email}, 0)
+	</insert>
+    
+    <!-- 가입신청멤버리스트 연산:totlist-->
+	<select id = 'totListJoin' parameterType="String" resultType="Integer">
+		select count(mid) from teamMember WHERE tid = #{_parameter} and mType = 0
+	</select>
+	
+	<!-- 가입리스트 가져오기 -->
+	<select id= 'selectJoinList' parameterType="page.Page" resultType="vo.TeamMemberVo">
+	  SELECT * FROM(
+	  SELECT rownum rno, m.* from(
+	    SELECT mid, posit, email , jDate FROM teamMember
+		    <where>
+			  <if test="findStr != '' ">
+			    tid = #{findStr}
+		  		and mType = 0
+			  </if>
+			</where>
+			order by jDate ASC, mid ASC
+	      )m
+	   )WHERE rno BETWEEN #{startNo} AND #{endNo}
+   </select>
+   
+   
+   <!-- tid 매칭리코드 총 갯수 -->
+   	<select id="recordTotList" parameterType="String" resultType="Integer">
+	  SELECT COUNT(BOARDSERIAL) FROM MATCHINGRECORD m WHERE MYTEAM = #{_parameter} OR YOURTEAM  = #{_parameter}
+	</select>
+   
+   <!-- 매칭 리스트  -->
+   <select id="recordList" parameterType="page.TeamPage" resultType="vo.MatchRecordVo">
+      SELECT rno,myTeam,yourTeam,dDate,applyDate from(
+	  SELECT rownum rno,tRecode.myTeam,tRecode.yourTeam,tRecode.dDate,tRecode.applydate FROM 
+      (SELECT myTeam,yourTeam,to_char(dDate,'yy-mm-dd') dDate,TO_CHAR(applyDate,'yy-mm-dd') applydate FROM MATCHINGRECORD WHERE MYTEAM = #{tid} OR YOURTEAM  = #{tid})tRecode
+      )WHERE rno BETWEEN #{startNo} AND #{endNo}
+   </select>
+   
+   
+   <!-- 가입자 수락(업데이트) -->
+   <update id = "acceptMember" parameterType = "vo.TeamMemberVo">
+   		UPDATE teamMember SET mType = 1, jDate = sysdate where mid = #{mid} and tid = #{tid}
+   </update>
+   
+   <!-- 가입자 수락 후 관련 가입리스트 지우기 -->
+   <delete id = "deleteOtherJoin" parameterType = "String">
+   		DELETE FROM teamMember WHERE mid = #{_parameter} and mType = 0
+   </delete>
+   
+   <!-- 가입자 거절 -->
+   <delete id = "rejectJoinMember" parameterType = "vo.TeamMemberVo">
+   		DELETE FROM teamMember WHERE mid = #{mid} and tid = #{tid} and mType = 0
+   </delete>
+   
+   <!-- 주장 선택 -->
+   <select id = 'selectLeader' parameterType = "String" resultType = "vo.TeamVo">
+   		SELECT mid, tid FROM(
+	  SELECT rownum rno, t.* from(
+	    SELECT mid, jDate,tid FROM teamMember WHERE tid = #{_parameter} AND mtype = 1 ORDER BY jDAte ASC 
+	      )t
+	   )WHERE rno =1
+   </select>
+   
+   <!-- 주장 업데이트 -->
+   <update id = 'updateLeader' parameterType = "vo.TeamVo">
+   		UPDATE team SET mid = #{mid} where tid = #{tid}
+   </update>
+   
+   
+   <update id="deleteMyTeam" parameterType = "vo.TeamMemberVo">
+      update member set tid = null where mid = #{mid}
+   </update>
+   
+   <update id="deleteAllMyTeam" parameterType="String">
+      update member set tid = null where tid = #{tid}
+   </update>
+   
+   <update id="cntMemberUpdateM" parameterType="vo.TeamMemberVo">
+      UPDATE team SET CNTMEMBER = CNTMEMBER-1 WHERE tid = #{tid}
+   </update>
+   
+   
+   <!-- 멤버 탈퇴 -->
+   <delete id = "deleteMember" parameterType = "vo.TeamMemberVo">
+   		DELETE FROM teamMember WHERE mid = #{mid} and tid = #{tid} and mType = 1
+   </delete>
+   
+   <delete id="dismantleTeam" parameterType = "String">
+      delete from team where tid = #{_parameter}
+   </delete>
+   
+   <delete id="deleteAllMember" parameterType = "String">
+      delete from teammember where tid = #{_parameter}
+   </delete>
+   
+   
+   
+   
+   <!-- 팀 해체 -->
+   <delete id = "deleteTeam" parameterType = "String">
+   		DELETE FROM team WHERE tid = #{_parameter}
+   </delete>
+   
+   <!-- 팀원 청소 -->
+   <delete id = "cleanMember" parameterType = "String">
+   		DELETE FROM teamMember WHERE tid = #{_parameter}
+   </delete>
+   
+   
+</mapper>

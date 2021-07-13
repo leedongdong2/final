@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.HomeMapper">
+   
+    <!-- 매칭횟수 랭크찾기  -->
+    <select id="findTeamRank" resultType="vo.TeamVo">
+      SELECT teamRank.serial serial, teamRank.pic pic, teamRank.tid tid, teamRank.cntmatch CNTMATCH, teamRank.serial serial, teamRank.teamRANK rno,teamRank.mid from(
+		SELECT serial,pic,tid,CNTMATCH,ROW_NUMBER() over(ORDER BY CNTMATCH desc) teamRank,mid FROM team ORDER BY teamRank, tid
+		)teamRank WHERE teamRank BETWEEN 1 AND 5
+    </select>
+   
+   	<!-- 최신 구장 불러오기 -->
+   	<select id='recentStadium' resultType='vo.StadiumVo'>
+		select * from 
+		(SELECT rownum num, n.* FROM
+		(SELECT * FROM MAP ORDER BY name asc) n
+		) where num BETWEEN 1 AND 5
+	</select>
+	
+	<!-- 최신 매칭게시판 불러오기 -->
+	<select id="matchingView" resultType="vo.MatchVo">
+   SELECT rno,serial,ddate,tag,loca,tier,title,mid from(
+   SELECT rownum rno,m.serial,m.ddate,m.tag,m.loca,m.tier,m.title,m.mid from(
+   SELECT serial,TO_CHAR(DDATE,'yy/mm/dd') ddate,tag,loca,tier,title,mid FROM MATCHINGBOARD
+    ORDER BY vs DESC,serial desc
+   )m )WHERE rno BETWEEN 1 AND 10
+   </select>
+	
+</mapper>

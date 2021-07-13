@@ -1,0 +1,469 @@
+@charset "UTF-8";
+@import "reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#team{
+	width: 100%;
+	position: relative;
+}
+
+#team #frm_team{
+	width: 100%;
+	position: relative;
+}
+
+#team h2{
+	font-family: 'twayair';
+	font-size: 200%;
+	line-height: 300%;
+	font-weight: bold;
+	text-align:center;
+}
+
+/* =========== 목록:search ============ */
+#team #frm_team #findT input[type= 'search'], #team #frm_team #findS #btnSearch{
+	float : right;
+}
+
+#findT input[type="search"]{
+	width: 25%; /* 원하는 너비 설정 */ 
+	height: auto; /* 높이값 초기화 */ 
+	line-height : normal; /* line-height 초기화 */ 
+	padding: .3em .5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */ 
+	font-family: inherit; /* 폰트 상속 */ 
+	border: 1px solid #b2b2b2; 
+	border-radius: 0; /* iSO 둥근모서리 제거 */ 
+	outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ 
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
+	-moz-appearance: none; 
+	appearance: none;
+	    font-size: 17px;
+}
+
+#team>.content-grid{
+	margin-top: 2em;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto 2em;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  color: #141414;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+.grid-item * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.grid-item img {
+  max-width: 100%;
+  vertical-align: top;
+}
+.grid-item figcaption {
+  position: absolute;
+  top: calc(77%);
+  width: 100%;
+  background-color: #ffffff;
+  padding: 15px 25px 65px;
+}
+.grid-item figcaption:before {
+  position: absolute;
+  content: '';
+  z-index: 2;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-image: -webkit-linear-gradient(top, transparent 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+.grid-item h3,
+.grid-item p {
+  margin: 0 0 10px;
+}
+.grid-item h3 {
+	font-weight: bold;
+    font-size: 35px;
+    line-height: 2em;
+    font-family: 'twayair';
+}
+.grid-item p {
+	font-size: 18px;
+	font-weight: bold;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    font-family: 'VITRO PRIDE TTF';
+}
+.grid-item p span{
+	line-height:38px;
+}
+.grid-item a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+      width: 240px;
+}
+.grid-item:hover figcaption,
+.grid-item.hover figcaption {
+  top: 80px;
+}
+
+
+#team #pageT{
+	    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    margin: auto;
+}
+
+#team #frm_team #findT #btnSearch{
+    margin-right: 10px;
+    color: #fff;
+    background-color: #000;
+    font-family: 'VITRO PRIDE TTF';
+    font-size: 15px;
+    border: 1px solid #aaa;
+    font-weight: bold;
+    padding: 7px 20px;
+
+}
+
+#team #frm_team #findT #btnSearch:hover{
+	background-color: rgb(240, 130, 71);
+	transition: all 0.5s;
+	cursor: pointer;
+}
+
+#team #frm_team #findT #btnRegister{
+width: 100px;
+    height: 40px;
+    font-family: 'VITRO PRIDE TTF';
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 22%);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+ }
+ 
+ #team #frm_team #findT #btnRegister:hover{
+  background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.5);
+  color: #fff;
+  transform: translateY(-7px);
+ }
+
+
+
+/*========================= 상세보기 =============================*/
+#team #frm_team #tid, #team #frm_team #lmid{
+	width: 20%; /* 원하는 너비 설정 */ 
+	height: auto; /* 높이값 초기화 */ 
+	line-height : normal; /* line-height 초기화 */ 
+	padding: .3em .5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */ 
+	font-family: inherit; /* 폰트 상속 */ 
+	border: 1px solid #b2b2b2; 
+	border-radius: 0; /* iSO 둥근모서리 제거 */ 
+	outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ 
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
+	-moz-appearance: none; 
+	appearance: none;
+}
+
+#team #frm_team label{
+margin-left: 80px;
+}
+#team #frm_team #hit_label{
+margin-left: 22%;
+}
+#team #frm_team #hit_label #hit{
+	width: 60px; /* 원하는 너비 설정 */ 
+	height: auto; /* 높이값 초기화 */ 
+	line-height : normal; /* line-height 초기화 */ 
+	font-family: inherit; /* 폰트 상속 */ 
+	border:none; 
+	border-radius: 0; /* iSO 둥근모서리 제거 */ 
+	outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ 
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
+	-moz-appearance: none; 
+	appearance: none;
+	font-size: 15pt;
+}
+
+#team #frm_team label{
+	font-size: 15pt;
+	font-family: 'twayair';
+    font-weight: normal;
+    font-style: normal;
+}
+
+#team #frm_team label #lmid{
+	border: none;
+	font-size: 15pt;
+	margin-top:30px;	
+}
+
+#team #frm_team label #tid{
+	border: none;
+	font-size: 15pt;
+	margin-top:30px;
+}
+
+#team #frm_team .textarea{
+    border:1px solid #f0f0f0;
+	    box-shadow: 2px 2px 35px 10px #f0f0f0;
+    margin-left: 100px;
+    font-size: 15pt;
+    resize: none;
+    font-family: 'VITRO PRIDE TTF';
+    padding: 10px;
+    overflow: hidden;
+}
+
+#team #frm_team .photo{
+	width:300px;
+	height:300px;
+	margin-left: 119px;
+	border:1px solid #f0f0f0;
+	    box-shadow: 2px 2px 35px 10px #f0f0f0;
+}
+
+#team #frm_team .img{
+	margin-top:25px;
+	display:flex;
+	
+}
+
+#team #frm_team .viewH2{
+	margin-top: 30px;
+}
+
+/*-----------------------팀원 목록--------------------------*/
+#team #frm_team .mid{
+	display:inline-block;
+	width:23%;
+	
+}
+
+#team #frm_team .posit{
+	display:inline-block;
+	width:25%;
+	
+	
+}
+
+#team #frm_team .email{
+	display:inline-block;
+	width:25%;
+	
+	
+}
+
+#team #frm_team .joinDate{
+	display:inline-block;
+	width:25%;
+}
+
+#team #frm_team .myteam{
+	display:inline-block;
+	width:23%;
+}
+
+#team #frm_team .yourteam{
+	display:inline-block;
+	width:25%;
+}
+
+#team #frm_team .ddate{
+	display:inline-block;
+	width:25%;
+}
+
+#team #frm_team .applydate{
+	display:inline-block;
+	width:25%;
+}
+
+#team #frm_team .tmTitle, #team #frm_team .tmItems{
+	line-height: 30px;
+	width:80%;
+	margin:0 auto;
+	text-align: center;
+}
+
+#team #frm_team .tmItems .tmItem{
+	line-height: 40px;
+    border-bottom: 1px solid rgb(220,220,220);
+    font-family:'VITRO PRIDE TTF';
+}
+
+#team #frm_team #matching #matchingTitle{
+	line-height: 30px;
+	width:80%;
+	margin:0 auto;
+	text-align: center;
+}
+
+#team #frm_team #matching #matchingItems{
+	line-height: 30px;
+	width:80%;
+	margin:0 auto;
+	text-align: center;
+}
+
+#team #frm_team #matching #matchingTitle{
+	border-bottom:1px solid #000;	
+}
+
+#team #frm_team .tmTitle{
+	border-bottom:1px solid #000;	
+}
+
+#team #frm_team .tmTitle span{
+	    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	line-height: 30px;
+}
+
+#team #frm_team #matching #matchingTitle span{
+	    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	line-height: 30px;
+}
+
+#team #frm_team #matching #matchingItems{
+	line-height: 40px;
+    border-bottom: 1px solid rgb(220,220,220);
+    font-family:'VITRO PRIDE TTF';
+}
+
+/*--------------------------팀원 목록 끝-----------------------------*/
+
+#btn_zone{
+	text-align: center;
+	display: flex;
+    align-items: center;
+    margin-top: 65px;
+    margin-bottom: 30px;
+    align-content: center;
+    justify-content: center;
+}
+
+#btn_zone input{
+	margin-right:20px;
+	width: 100px;
+    height: 45px;
+    font-family: 'VITRO PRIDE TTF';
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 18%);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    float: right;
+}
+
+#btn_zone input:hover{
+    background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.5);
+  color: #fff;
+  transform: translateY(-7px);
+  }
+
+#pageMatch{
+	text-align: center;
+	margin-top:20px;
+}
+
+.btn_find{ 
+    background-color: #ffffff;
+    width:41px;
+    height: 41px;
+    color: rgb(80, 80, 80);
+    font-family:'VITRO PRIDE TTF';
+    border: 1px solid #aaa;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.btn_find:hover{
+    background-color:  rgb(240, 130, 71);
+    border:1px solid #000;
+    color:white;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.btn_find1{ 
+    background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border:1px solid #aaa;
+    color: rgb(80, 80, 80);
+    font-family:'VITRO PRIDE TTF';
+    font-weight: bold;
+}
+
+.btn_find1:hover{
+    background-color:rgb(255, 255, 255);
+    border:1px solid #fc5d3a;
+    color:#fc5d3a;
+    cursor: pointer;
+    transition: all 0.5s;
+}

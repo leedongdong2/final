@@ -1,0 +1,261 @@
+@charset "UTF-8";
+@import "/reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#main{
+	font-family:'VITRO PRIDE TTF';
+	display:inline-block;
+	width:100%;
+	background-color:rgb(252, 252, 252);
+}
+
+#main span{
+	display:block;
+	margin-top:10px;
+}
+
+#main #back{
+	width: 140px;
+	height: 45px;
+	font-family: 'twayair';
+	font-size: 17px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	  font-weight: bold;
+	  color: #000;
+	  background-color: #fff;
+	  border: none;
+	  border-radius: 45px;
+	  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	  transition: all 0.3s ease 0s;
+	  cursor: pointer;
+	  outline: none;
+	  margin:30px;
+}
+
+#main #back:hovver{
+	background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.item_name{
+	font-size:30pt;
+}
+
+#btn_zone{
+	text-align:center;
+}
+
+#btn_zone #btn_modify, #btn_zone #btn_delete{
+	margin-top: 4%;
+	width: 140px;
+	height: 45px;
+	font-family: 'twayair';
+	font-size: 17px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	  font-weight: bold;
+	  color: #000;
+	  background-color: #fff;
+	  border: none;
+	  border-radius: 45px;
+	  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	  transition: all 0.3s ease 0s;
+	  cursor: pointer;
+	  outline: none;
+	  margin-right: 30px;
+}
+#btn_zone #btn_modify:hover, #btn_zone #btn_delete:hover{
+	background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
+#shell{
+width:80%;
+margin:auto;
+	
+}
+
+.shell2{
+	width:70%;
+	height:400px;
+	margin:auto;
+	background-color:#fff;
+}
+
+#item{
+	width:70%;
+	background-color:#fff;
+	padding: 0px 0px 15px 10%;
+	margin-top:-102px;
+}
+
+.top{
+	display:inline-block;
+	width:100%;
+	height:320px;
+}
+
+.btn .reservationBtn{
+	    margin-left: 41%;
+}
+
+#title{
+    width: 500px;
+    height: 100px;
+    text-align: center;
+    background-color: #fff;
+    margin: auto;
+}
+
+#item h2{
+	font-family: 'twayair';
+	display:inline-block;
+	font-size: 20pt;
+	line-height:40pt;
+    font-weight: bold;
+}
+
+#item label{
+	font-size: 20px;
+	line-height: 60px;
+}
+
+#Rtitle{
+	width: 60%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 40px auto;
+}
+
+#reserv{
+	display:inline-block;
+	width:100%;
+	height:400px;
+	 background-color: #fff;
+	 margin-top:10px;
+}
+
+span{
+	word-break:break-all;
+}
+
+#MonthSelector  { 
+	font-family : 'VITRO PRIDE TTF';
+    width : 12%;
+    margin : auto;
+    
+}
+
+#MonthSelector #leftMonth,#MonthSelector #rightMonth {
+	display : inline-block;
+	font-size : 20px;
+	padding : 0 10px;
+}
+
+#MonthSelector #reservationMonth { 
+	font-size : 20px;
+	width : 50px;
+	text-align : center;
+	border : none;
+}
+
+#days {
+	width : 700px;
+	min-height : 400px;
+	margin : auto;
+	text-align: center;
+	border: 4px double #ddd;
+}
+
+.day {
+	width : 100px;
+	min-height : 100px;
+    display : inline-block;
+    font-size: 20px;
+    line-height: 100px;
+}
+.day:hover{
+	border: 2px solid rgb(240, 130, 71);
+	transition: all 0.5s;
+}
+#timeForm{
+	width:100%;
+}
+.selectTime{
+	display: inline-block;
+    width: 25%;
+    text-align: center;
+    font-size: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    line-height: 40px;
+    margin: 0 4%;
+}
+
+.selectTime:hover {
+	cursor : pointer;
+	background-color : #FF7F00;
+}
+.top #stadiumimg {
+	   width: 380px;
+    margin-left: 18%;
+}
+
+#myPoint{
+	margin: 30px;
+    font-size: 25px;
+    text-align: center;
+    line-height: 50px;
+}
+
+#reserv input[type='button']{
+	font-size: 17px;
+    background-color: #000;
+    color: #fff;
+    /* border: none; */
+    padding: 4px 10px;
+    border: 1px solid #000;
+    margin: 30px;
+    font-weight: bold;
+    font-family: 'VITRO PRIDE TTF';
+}
+#reserv input[type='button']:hover{
+	color: #000;
+	background-color: #fff;
+	transition: all 0.5s;
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MatchingMapper">
+
+<insert id="boardRegister" parameterType="vo.MatchVo">
+
+insert into matchingboard(serial,mid,mDate,dDate,title,tag,loca,tier,doc,vs,hit) 
+values (matchingBoard_seq.nextval,#{mid},sysdate,#{dDate},#{title},#{tag},#{loca},#{tier},#{doc},'매칭중',0)
+
+</insert>
+
+<insert id="saveFileName" parameterType="vo.MatchImgVo">
+  insert into matchingboard_img(serial,saveFileName) values(#{serial},#{saveFileName})
+</insert>
+
+<insert id="insertRepl" parameterType="vo.MatchingReplVo">
+   insert into matchingRepl(replserial,serial,replmid,repldoc,replnal,replvs) values(matchingRepl_seq.nextval,#{serial},#{replMid},#{replDoc},sysdate,'매칭신청')
+</insert>
+
+<insert id="insertRecord" parameterType="vo.MatchRecordVo">
+   INSERT INTO Matchingrecord(boardserial,myTeam,yourTeam,dDate,applyDate) values(#{boardSerial},#{myTeam},#{yourTeam},#{dDate},sysdate)
+</insert>
+
+<select id="findSerial" resultType="Integer">
+  SELECT matchingBoard_seq.currval FROM dual
+</select>
+
+	<select id="totList" resultType="Integer" parameterType="vo.MatchingPage">
+	 SELECT count(serial) FROM matchingBoard
+	 <where>
+	   <if test="tag != 'all' and tag != null">
+	       tag = #{tag}
+	   </if>
+	   <if test="loca != 'all' and loca != null">
+	       and loca = #{loca}
+	   </if>
+	   <if test="tier != 'all' and tier != null">
+	      and tier = #{tier}
+	   </if>
+	   <if test="findStr != '' and findStr != null">
+	      and (title like '%${findStr}%' or doc like '%${findStr}%')
+	   </if>
+	 </where>
+	</select>
+	
+	<select id="matchingView" resultType="vo.MatchVo" parameterType="vo.MatchingPage">
+	   SELECT rno,serial,ddate,tag,loca,tier,title,mid,vs,hit from(
+	   SELECT rownum rno,m.serial,m.ddate,m.tag,m.loca,m.tier,m.title,m.mid,m.vs,m.hit from(
+	   SELECT serial,TO_CHAR(DDATE,'yy/mm/dd') ddate,tag,loca,tier,title,mid,vs,hit FROM MATCHINGBOARD
+	    <where>
+	   <if test="tag != 'all' and tag != null">
+	       tag = #{tag}
+	   </if>
+	   <if test="loca != 'all' and loca != null">
+	       and loca = #{loca}
+	   </if>
+	   <if test="tier != 'all' and tier != null">
+	      and tier = #{tier}
+	   </if>
+	   <if test="findStr != '' and findStr != null">
+	      and (title like '%${findStr}%' or doc like '%${findStr}%')
+	   </if>
+	 </where>
+	    ORDER BY vs DESC,serial desc
+	   )m 
+	   )WHERE rno BETWEEN #{startNo} AND #{endNo}
+	</select>
+
+<select id="matchingDetail" resultType="vo.MatchVo" parameterType="Integer">
+   SELECT title,mid,loca,tag,tier,to_char(ddate,'yy-mm-dd') ddate,to_char(mdate,'yy-mm-dd') mdate,hit,doc FROM MATCHINGBOARD WHERE SERIAL = #{_parameter}
+</select>
+
+<select id="matchingModify" resultType="vo.MatchVo" parameterType="Integer">
+  SELECT title,loca,tag,tier,to_char(ddate,'yyyy-mm-dd') ddate,doc FROM MATCHINGBOARD WHERE SERIAL = #{_parameter}
+</select>
+
+<select id="findFileName" resultType="String" parameterType="Integer">
+SELECT SAVEFILENAME FROM MATCHINGBOARD_IMG WHERE SERIAL = #{_parameter}
+</select>
+
+<select id="replTotList" resultType="Integer" parameterType="Integer">
+   select count(serial) from matchingrepl where serial = #{_parameter} ORDER BY replnal DESC
+</select>
+
+<select id="matchingReplView" resultType="vo.MatchingReplVo" parameterType="vo.MatchingReplPage">
+   SELECT rno,replSerial,replmid,repldoc,replnal,replvs from(
+   SELECT rownum rno,mr.replSerial,mr.replmid,mr.repldoc,mr.replnal,replvs from(
+   SELECT replSerial,replmid,repldoc,TO_char(replnal,'yy-mm-dd hh:mi:ss') replnal,replvs FROM matchingrepl WHERE serial = #{serial} ORDER BY replnal DESC
+   )mr
+   )WHERE rno BETWEEN #{startNo} AND #{endNo}
+</select>
+
+<select id="findReplWriterVo" resultType="vo.MemberVo" parameterType="String">
+   SELECT email,tid FROM MEMBER WHERE mid = #{_parameter}
+</select>
+
+<select id="findBoardWriterVo" resultType="vo.MemberVo" parameterType="String">
+   select phone,tid from member where mid = #{_parameter}
+</select>
+
+
+<select id="findMatchBoard" resultType="vo.MatchVo" parameterType="Integer">
+  SELECT serial,mid,title,loca,tag,tier,doc,to_char(dDate,'yy-mm-dd') dDate FROM MATCHINGBOARD WHERE serial = #{_parameter}
+</select>
+
+<select id="findReplSerial" resultType="Integer" parameterType="Integer">
+ SELECT REPLSERIAL FROM MATCHINGBOARD WHERE SERIAL = #{_parameter}
+</select>
+
+<select id="checkVs" resultType="String" parameterType="Integer">
+ select REPLSERIAL from MATCHINGBOARD WHERE SERIAL = #{_parameter}
+</select>
+
+<select id="findMyTeam" resultType="String" parameterType="Integer">
+     SELECT tid FROM MEMBER WHERE mid = 
+    (SELECT mid FROM MATCHINGBOARD WHERE SERIAL= #{_parameter})
+</select>
+
+<select id="findYourTeam" resultType="String" parameterType="Integer">
+           SELECT tid FROM MEMBER WHERE mid = 
+           (SELECT replmid FROM MATCHINGREPL WHERE REPLSERIAL = #{_parameter})
+</select>
+
+<update id="updateBoard" parameterType="vo.MatchVo">
+  UPDATE MATCHINGBOARD SET  MDATE=SYSDATE , title=#{title} , loca=#{loca} , tag=#{tag} , tier=#{tier} ,DDATE = #{dDate} , doc = #{doc} WHERE SERIAL = #{serial}
+</update>
+
+<update id="updateReplVs" parameterType="Integer">
+   update matchingrepl set replvs = '신청완료' where replserial = #{_parameter}
+</update>
+
+<update id="updateVs" parameterType="HashMap">
+   update matchingBoard set vs = '매칭완료',replserial = #{replSerial} where serial = #{serial}
+</update>
+
+<update id="updateCancelReplVs" parameterType="Integer">
+   update matchingrepl set replvs = '매칭신청' where replserial = #{_parameter}
+</update>
+
+<update id="updateCancel" parameterType="Integer">
+   update matchingBoard set vs = '매칭중',replserial = '' where serial = #{_parameter}
+</update>
+
+<update id="updateCntMatch" parameterType="HashMap">
+ UPDATE TEAM SET CNTMATCH = CNTMATCH + 1 WHERE tid = #{myTeam} OR tid = #{yourTeam}
+</update>
+
+<update id="updateCntMatchM" parameterType="HashMap">
+ UPDATE TEAM SET CNTMATCH = CNTMATCH - 1 WHERE tid = #{myTeam} OR tid = #{yourTeam}
+</update>
+
+<update id="updateHit" parameterType="Integer">
+   UPDATE MATCHINGBOARD SET hit = hit + 1 WHERE serial = #{_parameter}
+</update>
+
+
+<delete id="deleteLeftFile" parameterType="vo.MatchImgVo">
+  delete from matchingboard_img where serial = #{serial} and saveFileName = #{saveFileName}
+</delete>
+
+<delete id="deleteBoard" parameterType="Integer">
+  delete from matchingboard where serial = #{_parameter}
+</delete>
+
+<delete id="deleteBoardImg" parameterType="Integer">
+  delete from matchingboard_img where serial = #{_parameter} 
+</delete>
+
+<delete id="deleteBoardRepl" parameterType="Integer">
+  delete from matchingRepl where serial = #{_parameter}
+</delete>
+
+<delete id="deleteRepl" parameterType="Integer">
+  delete from matchingrepl where replserial = #{_parameter}
+</delete>
+
+<delete id="removeRecordMatch" parameterType="Integer">
+  delete from MATCHINGRECORD where BoardSerial = #{_parameter}
+</delete>
+
+
+
+</mapper>

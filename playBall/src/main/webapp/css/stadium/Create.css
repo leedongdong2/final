@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#main{
+	width:100%;
+	min-height:800px;
+	display:flex;
+	margin-top: 10px;
+}
+
+#doc{
+	margin-left:10px;
+}
+
+/*구장 입력창*/
+#doc input[type = 'text']{
+	font-family:'VITRO PRIDE TTF';
+	font-size: 20px;
+	border-radius: 5px;
+}
+
+#img{
+	width:500px;
+	height:380px;
+}
+
+/*제목(JSP 에 label 추가요)*/ 
+#doc label{
+	font-family: 'twayair';
+	font-size: 15pt;	
+	margin-left: 10px;
+}
+
+#title{
+	font-family:'VITRO PRIDE TTF';
+	width: 86%;
+    height: 46px;
+}
+
+#doc textarea{
+	font-family:'VITRO PRIDE TTF';
+	margin-left: 10px;
+	font-size: 15pt;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	width: 680px;
+	resize: none;
+	height: 576px;
+}
+
+#doc p {
+	font-family: 'twayair';
+	font-weight: bold;
+	margin-left:245px;
+	font-size: 13px;
+}
+
+
+
+
+/*주소, 운영시간,가격 입력창 크기JSP에 class값 추가해주세요, 위도 경도 예약 삭제))*/
+#doc .address, #doc .tim, #doc .price{ 
+	width: 50%;
+    height: 40px;
+	margin-top: 10px;
+}
+
+
+#map{
+	width:500px;
+	height:400px;
+}
+#address{
+	margin-left: 5%;
+}
+
+#btn_zone{
+	text-align:center;
+	margin: 20px auto;
+    display: flex;
+    width: 40%;
+    justify-content: space-around;	
+}
+
+#btn_create, #btn_cancle{
+  width: 140px;
+  height: 45px;
+  font-family: 'twayair';
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: bold;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-right: 30px;
+}
+
+#btn_create:hover, #btn_cancle:hover{
+  background-color: rgb(240, 130, 71);
+  box-shadow: 0px 15px 20px rgba(240, 130, 71, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#attfile {
+	display : none;
+}

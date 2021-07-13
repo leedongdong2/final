@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+   <context:annotation-config/>  
+    
+    <bean id="teamController" class="controller.Team"></bean> 
+   <bean id="teamService" class="service.TeamServiceImpl"></bean>
+
+
+
+
+<!-- view리조브와 컨트롤을 정의하는 방법 -->
+        <!-- view를 선택하는 경우 --> <!-- view다 -->
+<bean id="teamViewResolver"
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <!--경로   hello를 리턴하면 앞에는 /가 뒤에는 .jsp로 바뀜 -->
+    <property name="prefix" value='/page/team/'/>
+    <!-- 확장자 -->
+    <property name="suffix" value='.jsp'/>
+    <property name="contentType" value="text/html; charset=UTF-8"/>
+    </bean>
+
+ 
+
+
+
+</beans>

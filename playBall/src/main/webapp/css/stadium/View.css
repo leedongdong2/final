@@ -1,0 +1,275 @@
+@import "/reset.css";
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+#main{
+	margin-top: 10px;
+}
+
+#main h1{
+	font-size: 30px;
+	font-weight: bold;
+	font-family: 'twayair';
+	margin: 20px;
+	width: 50%;
+	display: inline-block;
+}
+
+.content-grid{
+	margin-top: 2em;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+figure.grid-item {
+font-family:'VITRO PRIDE TTF';
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 375px;
+  max-width: 375px;
+  max-height: 375px;
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  display: inline-block;
+}
+figure.grid-item * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+figure.grid-item img {
+  max-width: 100%;
+  position: relative;
+  opacity: 0.9;
+}
+figure.grid-item figcaption {
+  position: absolute;
+  top: 45%;
+  left: 7%;
+  right: 7%;
+  bottom: 45%;
+  border: 1px solid white;
+  border-width: 1px 1px 0;
+}
+figure.grid-item .list_items {
+  overflow: hidden;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+figure.grid-item h2 {
+font-family:'VITRO PRIDE TTF';
+  display: table;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  font-weight: 400;
+}
+figure.grid-item h2 span {
+font-family:'VITRO PRIDE TTF';
+  font-weight: 800;
+}
+figure.grid-item h2:before,
+figure.grid-item h2:after {
+  position: absolute;
+  display: block;
+  width: 1000%;
+  height: 1px;
+  content: '';
+  background: white;
+  top: 50%;
+}
+figure.grid-item h2:before {
+  left: -1000%;
+}
+figure.grid-item h2:after {
+  right: -1000%;
+}
+figure.grid-item p {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
+  opacity: 0;
+  line-height: 1.6em;
+  font-size: 0.9em;
+}
+figure.grid-item a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+figure.grid-item:hover img {
+  opacity: 0.25;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+figure.grid-item:hover figcaption {
+  top: 7%;
+  bottom: 7%;
+}
+figure.grid-item:hover p {
+  opacity: 1;
+  -webkit-transition-delay: 0.35s;
+  transition-delay: 0.35s;
+}
+
+#s{
+padding:30px;
+}
+
+.stadiumlist{
+	width:100%;
+	display:flex;
+	height: 220px;
+	padding: 10px;
+	border-radius: 5px;
+	margin-top: 30px;
+}
+
+.stadiumlist:hover{
+	background-color: rgba(240, 130, 71, 0.4);
+	transition: background-color, 0.5s;
+}
+
+.stadiumlist .img{
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.stadiumlist .img .stadiumimg{
+	width: 200px;
+	height: auto;
+	background-position: center;
+   	background-size: cover;
+} 
+
+.list_items{
+	display:inline-block;
+	font-family: 'twayair';
+	left:0;
+}
+
+.item_name{ display:inline-block; width:200px; margin: 20px;
+font-size: 20px;}
+.item_doc{ display:inline-block; min-width:200px; margin: 20px;}
+.item_price{ display:inline-block; width:200px; margin: 20px;}
+.item_place{ display:inline-block; min-width:200px; margin: 20px;}
+
+#list_items span{
+	margin-top:15px;
+	word-break:break-all;
+}
+
+#item_doc{
+	width:1000px;
+}
+
+#find_zone{
+	display:inline-block;
+	float:right;
+	margin-top: 30px;
+}
+
+#btn_findstr, #btn_create,#reservationStatus,#myReservation{
+    background-color: #ffffff;
+    padding: 4px 10px;
+    color: rgb(80, 80, 80);
+    font-family:'VITRO PRIDE TTF';
+    border: 1px solid #aaa;
+    font-size: 15px;
+    font-weight: bold;
+    font-family:'VITRO PRIDE TTF';
+}
+
+#btn_findstr:hover, #btn_create:hover,#reservationStatus:hover,#myReservation:hover{
+	background-color:  rgb(240, 130, 71);
+    border:1px solid #000;
+    color:white;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#btn_create{
+	margin-top: 20px;
+}
+.btn_zone{
+display: flex;
+justify-content: center;
+}
+
+.btn_zone input[type="button"]{
+	background-color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border:1px solid #aaa;
+    color: rgb(80, 80, 80);
+    font-family:'VITRO PRIDE TTF';
+    font-weight: bold;
+}
+.btn_zone input[type="button"]:hover{
+	 background-color:rgb(255, 255, 255);
+    border:1px solid #fc5d3a;
+    color:#fc5d3a;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+select, input[type = 'text']{
+		height: 25px;
+	font-family: 'VITRO PRIDE TTF';
+	
+}
+select{
+	width: 80px;
+}

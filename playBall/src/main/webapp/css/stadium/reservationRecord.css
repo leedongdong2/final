@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.record {
+	border : none;
+	outline : none;
+    width : 13%;
+    text-align : center;
+    font-size : 15px;
+}
+
+
+.cancelReservation {
+    all : unset;
+    font-size : 14px;
+    margin-left : 6%;
+}
+
+.cancelReservation:hover {
+	cursor : pointer;
+}
+
+
+#reservaitonRecord{
+	width : 100%;
+}
+
+#titleBox{
+	margin-top : 2%;
+    margin-bottom : 2%;
+    margin-left : 3%;
+}
+
+#backHistory{
+	all : unset;
+}
+
+#backHistory:hover{
+	cursor : pointer;
+}
+
+#recordTitle{
+    margin-left: 5%;
+    margin-bottom: 1%;
+    font-size : 15px;
+}
+
+.title{
+	font-weight : 700;
+	font-size : 30px;
+}
+
+.records{
+	margin-bottom: 3px;
+    margin-left: 10%;
+}
+
+#recordBox{
+	padding: 1%;
+    border: 1px solid #000000;
+    width: 81%;
+	margin : 1% auto;
+}
+
+#reservationId{
+	display: inline-block;
+    width: 14%;
+    text-align: center;
+}
+
+#stadiumName{
+	display: inline-block;
+    width: 16%;
+    text-align: center;
+}
+
+#price{
+	display: inline-block;
+    width: 15%;
+    text-align: center;
+	
+}
+
+#reservedDate {
+	display: inline-block;
+    text-align: center;
+    width: 16%;
+}
+
+#reservationDay {
+	    display: inline-block;
+    text-align: center;
+    width: 34%;
+}
+
+.recordMonth {
+	    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+	text-align: right;
+    width: 11%;
+}
+
+.recordDay {
+	    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+	    width: 1%;
+}
+
+.recordTime {
+	    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+	    width: 4%;
+}

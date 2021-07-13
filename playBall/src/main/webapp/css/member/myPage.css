@@ -1,0 +1,97 @@
+@import "reset.css";
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+
+
+#myPage {
+	width: 100%;
+  margin : 40px auto;
+  font-family: 'VITRO PRIDE TTF';
+}
+
+#info {
+	margin-left : 38%;
+	margin-top : 30px;
+}
+
+#myPage .title {
+    text-align : center;
+    border-bottom : 1px solid #6d6b6b;
+    margin : 10px auto;
+    color : #6d6b6b;
+    font-weight : 700;
+    padding : 15px;
+    font-size: 30px;
+    font-family: 'twayair';
+}
+
+
+.label {
+	display : inline-block;
+	width : 80px;
+	margin-bottom : 10px; 
+	padding : 15px;
+	text-align : center;
+	
+	
+}
+
+.block {
+	display : block;
+	margin-left : 100px;
+	padding : 15px;
+}
+
+.btnZone {
+margin-top : 30px;
+margin-left : 38%;
+}
+
+.btnZone .signBtn {
+    all : unset;
+    display : block;
+    width : 340px;
+    height : 50px;
+    text-align : center;
+    margin-top : 5px;
+    color : white;
+    font-size : 15pt;
+    font-weight : 700;
+    background-color : rgb(170, 163, 163);
+    border:1px solid #f0f0f0;
+}
+
+.btnZone .signBtn:hover {
+    cursor : pointer;
+    border:1px solid #ccc;
+    color: rgb(170, 163, 163);
+    background-color: #fff;
+    transition: all 0.5s;
+}

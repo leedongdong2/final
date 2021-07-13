@@ -1,0 +1,178 @@
+@import "reset.css";
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+.block {
+ display: block;
+ margin-top:12px;
+}
+
+#signUp {
+	width: 100%;
+  margin:0px auto;
+  font-family: 'VITRO PRIDE TTF';
+}
+
+#signBox {
+    margin-left:38%;
+	margin-top:30px;
+}
+
+#signUp .title {
+    text-align : center;
+    border-bottom : 1px solid #6d6b6b;
+    margin : 10px auto;
+    color : #6d6b6b;
+    font-weight : 700;
+    padding : 15px;
+    font-size: 30px;
+    font-family:'twayair';
+}
+
+label {
+    font-weight: 600;
+    color: #6d6b6b;
+}
+
+#signBox .btn {
+    all : unset;
+    box-sizing : border-box;
+    border : 1px solid rgba(240, 130, 71, 0.6);
+    border-radius : 5px;
+    width : 100px;
+    height : 45px;
+    color : rgb(240, 130, 71);
+    text-align : center;
+}
+
+#signBox .btn:hover {
+    cursor : pointer;
+}
+
+#signBox .input {
+    box-sizing : border-box;
+    margin-left : 7px;
+    width : 350px;
+    min-height : 45px;
+    font-size : 13pt;
+    border : 1px solid #d8b6b6e0;
+}
+
+#signBox .post {
+    box-sizing : border-box;
+    margin-top : 7px;
+    margin-left : 7px;
+    margin-right : 15px;
+    width : 230px;
+    min-height : 45px;
+    font-size : 13pt;
+    border : 1px solid #d8b6b6e0;
+}
+
+.posi {
+    display : block;
+    margin-top : 12px;
+    font-weight : 600;
+    color : #6d6b6b;
+}
+
+
+.topMargin {
+    display : block;
+    margin-top : 7px;
+}
+
+.botMargin {
+    display : block;
+    margin-bottom : 7px;
+}
+
+.eyeImg {
+    width : 25px;
+    opacity : 0.7;
+}
+
+.eyeImg {
+    cursor : pointer;
+}
+
+.imgBox {
+    margin-top : 20px;
+    display : flex;
+    flex-direction : row;
+}
+
+.imgBox .position {
+    margin-left : 20px;
+    width : 100px;
+    height : 130px;
+}
+
+
+
+.imgBox img {
+    width : 90px;
+    height : 120px;
+}
+
+.imgBox img:hover {
+	border : 4px solid rgb(240, 130, 71);
+	cursor : pointer;
+}
+
+.click {
+	border : 4px solid rgb(240, 130, 71);
+}
+
+.btnZone {
+   margin-top : 15px;
+}
+
+.btnZone .signBtn {
+    all : unset;
+    display : block;
+    width : 340px;
+    height : 50px;
+    text-align : center;
+    margin-top : 5px;
+    color : white;
+    font-size : 15pt;
+    font-weight : 700;
+    background-color : rgb(170, 163, 163);
+}
+
+.btnZone .signBtn:hover {
+    cursor : pointer;
+}
+
+#confirmPwd { 
+	color : #ff0000;
+	font-size : 10pt;
+	margin-left : 7px;
+}

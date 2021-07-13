@@ -1,0 +1,109 @@
+@import "reset.css";
+
+@font-face {
+	font-family:'VITRO CORE TTF';
+	src: url('../font/VITRO-CORE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-CORE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 코어 */
+
+@font-face {
+	font-family:'VITRO PRIDE TTF';
+	src: url('../font/VITRO-PRIDE-TTF.woff2') format('woff2'),
+		url('../font/VITRO-PRIDE-TTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/* 비트로 프라이드 */
+
+@font-face {
+    font-family: 'twaysky';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 하늘*/
+
+@font-face {
+    font-family: 'twayfly';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayfly.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 날다*/
+
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}/*티웨이 항공*/
+
+.logForm{
+	margin-top: 20px;
+	font-family:'VITRO PRIDE TTF';
+}
+
+.logBox {
+    min-height : 300px;
+    text-align : center;
+    margin : 0 auto;
+}
+
+.title {
+	font-family:'VITRO CORE TTF';
+    font-size : 30pt;
+    font-weight : 800;
+    margin-bottom : 20px;
+}
+
+.bon {
+    display : flex;
+    align-items : center;
+    min-height : 600px;
+}
+
+.inputLog {
+    width : 400px;
+    height : 50px;
+    margin-top : 20px;
+}
+
+.logBtn {
+    box-sizing : border-box;
+    all : unset;
+    border : 1px solid #f0f0f0;
+    margin-top : 20px;
+    width : 406px;
+    height : 50px; 
+    color : #ffffff;
+    background-color : rgb(240, 130, 71);
+    font-weight : 800;
+    font-size : 15pt;
+    font-family: 'twayair';
+}
+
+.logBtn:hover {
+    cursor : pointer;
+}
+
+.logService {
+    margin-top : 20px;
+}
+
+.logService .service { 
+    display : inline-block;
+    margin-left : 10px;
+    margin-right : 10px;
+}
+
+.logService .service:hover {
+    cursor : pointer;
+    color : rgba(240, 130, 71,0.8);
+    border-bottom : 1px solid rgba(240, 130, 71,0.8);
+    transition: all 0.5s;
+}
+
+.logService .i {
+    display : inline-block;
+    font-size : 10pt;
+    margin-bottom : 10px;
+}

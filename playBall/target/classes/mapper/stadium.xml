@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StadiumMapper">
+	<select id='totList' parameterType='vo.Page' resultType='Integer'>
+		select count(name) totlist from map
+		 <where>
+		 	<if test="sel=='전체'">
+		 		name like '%${findstr}%'
+		 	</if>
+		 	<if test="sel!='전체'">
+		 		name like '%${findstr}%' and address='${sel}'
+		 	</if>
+		 </where>
+		
+	</select>
+	
+	<select id='search' parameterType='vo.Page' resultType='vo.StadiumVo'>
+		select * from 
+		(SELECT rownum num, n.* FROM 
+		(SELECT * FROM MAP 
+		<where>
+			<if test="sel=='전체'">
+				name like '%${findstr}%' ORDER BY name asc) n
+		) where num BETWEEN #{startNo} AND #{endNo}
+			</if>
+			<if test="sel!='전체'">
+				name LIKE '%${findstr}%' and address='${sel}' ORDER BY name asc) n
+		) where num BETWEEN #{startNo} AND #{endNo}
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<insert id='create' parameterType='vo.StadiumVo'>
+		INSERT INTO map(serial, name, price, doc, tim, address, place1, place2, pic) 
+		values(map_seq.nextval, '${name}', ${price}, '${doc}', '${tim}', '${address}', '${place1}', '${place2}', #{pic})
+	</insert>
+	
+	<insert id="reservationRecord" parameterType="vo.ReservationVo">
+	INSERT INTO reservationRecord(stadiumserial,stadiumName,price,reservedDate,reservationMonth,reservationDay,reservationTime,reservationId)
+	VALUES (#{serial},#{stadiumName},#{price},sysdate,#{reservationMonth},#{reservationDay},#{reservationTime},#{reservationId})	
+	</insert>
+	
+	
+	<select id="getStadiumSerial" resultType="String">
+	SELECT map_seq.currval FROM dual
+	</select>
+   
+    <insert id="createMonth" parameterType="String" statementType="CALLABLE">
+        { CALL createMonth(#{_parameter})}
+    </insert>
+    
+    <insert id="createDay" parameterType="String" statementType="CALLABLE">
+      { CALL createDay(#{_paramter})}
+    </insert>
+		
+ 	
+	<update id='update' parameterType='vo.StadiumVo'>
+		UPDATE MAP SET name= '${name}', price=${price}, doc='${doc}', tim='${tim}', address='${address}', place1='${place1}', place2='${place2}',pic='${pic}' WHERE serial='${serial}'
+	</update>
+	
+	<update id="payment" parameterType="vo.ReservationVo">
+	   UPDATE MEMBER SET point = point - #{price} WHERE mid = #{reservationId}
+	</update>
+	
+	<update id="cancelPay" parameterType="vo.ReservationVo">
+	   update member set point = point + #{price} where mid = #{reservationId}
+	</update>
+	
+	
+	<select id='detail' parameterType='String' resultType='vo.StadiumVo'>
+		select serial, name, address, doc, tim, price, place1, place2,pic from map where serial = #{serial}
+	</select>
+	
+	<select id='modify' parameterType='String' resultType='vo.StadiumVo'>
+		select serial, name, doc, tim, address, place1, place2, price,pic from map where serial = ${serial}
+	</select>
+	
+	<select id="findSaveFile" parameterType="String" resultType="String">
+	   select pic from map where serial = #{serial}
+	</select>
+	
+	<select id="findUserPoint" parameterType="String" resultType="String">
+	SELECT point FROM MEMBER WHERE mid = #{_parameter}
+	</select>
+	
+	<select id="viewRvationDay" parameterType="vo.ReservationVo" resultType="String">
+	  <if test ="reservationMonth == 1 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONJan d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	  <if test ="reservationMonth == 2 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONFeb d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 3 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONMar d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 4 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONApr d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 5 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONMay d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 6 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONJun d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	  <if test ="reservationMonth == 7 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONJul d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 8 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONAug d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 9 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONSept d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 10 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONOct d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	 <if test ="reservationMonth == 11 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONNov d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.Day)
+	 </if>
+	 <if test ="reservationMonth == 12 ">
+	  SELECT  d.reservationDay FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONDec d ON 
+      m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth and m.stadiumSerial = #{serial} order by TO_NUMBER(d.reservationDay)
+	 </if>
+	</select>
+	
+	
+	<select id="viewReservationTime" parameterType="vo.ReservationVo" resultType="vo.ReservationVo">
+	
+		<if test ="reservationMonth == 1">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONJan d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial} 
+	</if>
+		<if test ="reservationMonth == 2">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONFeb d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 3">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONMar d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+	
+		<if test ="reservationMonth == 4">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONApr d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 5">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONMay d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 6">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONJun d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 7">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONJul d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 8">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONAug d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 9">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONSept d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 10">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONOct d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 11">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONNov d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+		<if test ="reservationMonth == 12">
+	SELECT  d.reservationTimeOne,d.reservationTimeTwo,d.reservationTimeThree,d.reservationTimeFour,d.reservationTimeFive,d.reservationTimeSix,
+    d.reservationTimeSeven,d.reservationTimeEight,d.reservationTimeNine,d.reservationTimeTen,d.reservationTimeEleven,d.reservationTimeTwelve FROM RESERVATIONMONTH m LEFT JOIN RESERVATIONDec d ON 
+    m.STADIUMSERIAL = d.stadiumSerial WHERE m.RESERVATIONMONTH  = d.reservationmonth AND d.reservationday = #{reservationDay} AND m.STADIUMSERIAL = #{serial}
+	</if>
+	</select>
+	
+	<select id="myReservationTotList" parameterType="vo.ReservationPageVo" resultType="Integer">
+	
+	  SELECT count(reservationId) FROM RESERVATIONRECORD  
+	  <if test="reservationId != 'hong' ">
+	  where RESERVATIONID  = #{reservationId}
+	  </if>
+	</select>
+	
+	<select id="moveMyReservation" parameterType="vo.ReservationPageVo" resultType="vo.ReservationVo">
+		SELECT stadiumSerial serial,stadiumName,reservationId,price,reservedDate,reservationMonth,reservationDay,reservationTime from(
+	    SELECT rownum rno,r.stadiumSerial,r.stadiumName,r.reservationId,r.price,r.reservedDate,r.reservationMonth,r.reservationDay,r.reservationTime From 
+        (SELECT stadiumSerial,stadiumName,reservationId,price,to_char(reservedDate,'yyyy-mm-dd hh24:mi') reservedDate,reservationMonth,reservationDay,reservationTime FROM RESERVATIONRECORD 
+	    <if test="reservationId != 'hong' ">
+	    where RESERVATIONID  = #{reservationId}
+	    </if>ORDER BY RESERVEDDATE desc)r
+         )WHERE rno BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	
+	<update id="reservation" parameterType="vo.ReservationVo">
+		<if test="reservationMonth == 1 and reservationTime != null">
+           UPDATE  RESERVATIONjan SET 
+           <choose>
+           <when test="reservationTime = '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime = '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime = '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime = '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime = '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime = '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime = '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime = '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime = '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime = '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime = '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime = '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay} 		
+		</if>
+		<if test="reservationMonth == 2 and Time != null">
+		    UPDATE  RESERVATIONFeb SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 3 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 4 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 5 and reservationTime != null">
+	    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 6 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 7 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 8 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 9 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 10 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 11 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 12 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '예약완료' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '예약완료' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '예약완료' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '예약완료' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '예약완료' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '예약완료' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '예약완료' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '예약완료' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '예약완료' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '예약완료' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '예약완료' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '예약완료' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+	</update>
+	
+	
+	<update id="cancelReservation" parameterType="vo.ReservationVo">
+		<if test="reservationMonth == 1 and reservationTime != null">
+           UPDATE  RESERVATIONjan SET 
+           <choose>
+           <when test="reservationTime = '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime = '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime = '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime = '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime = '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime = '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime = '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime = '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime = '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime = '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime = '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime = '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay} 		
+		</if>
+		<if test="reservationMonth == 2 and reservationTime != null">
+		    UPDATE  RESERVATIONFeb SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 3 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 4 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 5 and reservationTime != null">
+	    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 6 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 7 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 8 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 9 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 10 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 11 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+		<if test="reservationMonth == 12 and reservationTime != null">
+		    UPDATE  RESERVATIONjul SET 
+           <choose>
+           <when test="reservationTime == '10:00' ">
+           reservationTimeOne = '10:00' 
+           </when>
+           <when test="reservationTime == '11:00' ">
+           reservationTimeTwo = '11:00' 
+           </when>
+           <when test="reservationTime == '12:00' ">
+           reservationTimeThree = '12:00' 
+           </when>
+           <when test="reservationTime == '13:00' ">
+           reservationTimeFour = '13:00' 
+           </when>
+           <when test="reservationTime == '14:00' ">
+           reservationTimeFive = '14:00' 
+           </when>
+           <when test="reservationTime == '15:00' ">
+           reservationTimeSix = '15:00' 
+           </when>
+           <when test="reservationTime == '16:00' ">
+           reservationTimeSeven = '16:00' 
+           </when>
+           <when test="reservationTime == '17:00' ">
+           reservationTimeEight = '17:00' 
+           </when>
+           <when test="reservationTime == '18:00' ">
+           reservationTimeNine = '18:00' 
+           </when>
+           <when test="reservationTime == '19:00' ">
+           reservationTimeTen = '19:00' 
+           </when>
+           <when test="reservationTime == '20:00' ">
+           reservationTimeEleven = '20:00' 
+           </when>
+           <when test="reservationTime == '21:00' ">
+           reservationTimeTwelve = '21:00' 
+           </when>
+           </choose>
+           WHERE stadiumserial = #{serial} AND reservationDay = #{reservationDay}
+		</if>
+	</update>
+		
+	
+	<delete id="cancelReservationRecord" parameterType="vo.ReservationVo">
+	 DELETE FROM Record WHERE stadiumSerial= #{serial} AND reservationMonth = #{reservationMonth} AND reservationDay = #{reservationDay} 
+	 AND reservationTime = #{reservationTime} AND reservationId = #{reservationId}
+	</delete>
+	
+	
+	<select id="findRecord" parameterType="String" resultType="Integer">
+	  SELECT COUNT(STADIUMSERIAL) FROM RECORD WHERE STADIUMSERIAL = #{_parameter}
+	</select>
+	
+	<delete id="deleteReservationTable" parameterType="String" statementType="CALLABLE">
+	  { CALL deleteReservationTable(#{_parameter})}
+	</delete>
+	
+	<delete id='delete' parameterType='String'>
+		DELETE FROM MAP WHERE serial = '${serial}'
+	</delete>
+	
+	
+</mapper>

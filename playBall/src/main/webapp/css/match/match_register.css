@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+#mat_register { 
+	width: 100%;
+	margin:0 auto;
+	font-family: 'VITRO PRIDE TTF';
+}
+
+#mat{
+	font-size: 30pt;
+	font-weight: bolder;
+	margin-top: 30px;
+	display: inline-block;
+	    font-family: 'twayair';
+}
+
+#line{ 
+    border: 1px solid black;
+    background-color: black;
+    margin-top: 10px;
+}
+
+#title {
+	margin:0 auto;
+    width: 100%;
+    height: 60px;
+    background-color: #f9f9f9;
+    font-size: 16pt;
+    border: 1px solid #ddd;
+        font-family: 'twayair';
+}
+
+#line1{ 
+    border: 2px solid black;
+    background-color: black;
+    margin-top: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+#selectZone{
+	margin-top:10px;
+}
+
+textarea{
+	margin-top:5px;
+	width: 100%;
+	min-height: 400px;
+	resize: none;
+	font-family: 'VITRO PRIDE TTF';
+	font-size: 16px;
+}
+
+#btnZone{
+	width:26%;
+	margin:0 auto;
+	margin-top: 10px;
+}
+
+#saveBtn{
+	width: 140px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+}
+
+#saveBtn:hover{
+    background-color: black;
+    cursor: pointer;
+}
+
+#btnCancle{
+    width: 140px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: 1px solid rgba(187, 186, 186, 0.863)
+}
+
+#btnCancle:hover{
+    border:1px solid #000;
+    cursor: pointer;
+}
+select, input[type='date']{
+	height: 25px;
+	font-family: 'VITRO PRIDE TTF';
+	margin-right: 20px;
+}
+select{
+	width: 80px;
+}
