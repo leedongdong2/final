@@ -29,7 +29,7 @@ brd.home=function() {
 		dataType : "json",
 		success : function(resp) {
 			if( resp.findRecord == false ) {
-			  alert ("예약중인 구장입니다 예약취소를 해주세요~");      
+			  alert ("예약중인 구장입니다 예약취소를 해주세요");      
 			} else if( resp.result == false) {
 				alert ("삭제 취소");
 			} else if( resp.findRecord == true && resp.result == true ) {

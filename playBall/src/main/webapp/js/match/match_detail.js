@@ -199,7 +199,7 @@ function matchApply(sessionMid,mid,replWriterMid,replSerial,replVs) {
 			               url : "matchApply.matching",
 			               success : function(resp){
 					           if( resp.result == true ) {
-					               alert("신청완료되엇습니다!");
+					               alert("신청완료되었습니다!");
 					               $("#pageBox").load("matchingDetail.matching",data);
 					           } else {
 				                  alert("신청 실패!");

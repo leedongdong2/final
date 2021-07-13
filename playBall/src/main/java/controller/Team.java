@@ -296,10 +296,8 @@ public class Team {
 			if(update>0) {
 				cntMember = vo.getCntMember();
 				if(cntMember>=5) {
-					System.out.println("멤버수 : "+cntMember);
 					json.addProperty("result", false);
 				} else {
-					System.out.println("멤버수 : "+cntMember);
 					json.addProperty("result", true);
 				}
 			}else {

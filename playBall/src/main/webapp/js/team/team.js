@@ -157,7 +157,7 @@ $("#btnDelete").click(function(){
 		url : "dismantleTeam.team",
 		success : function(resp){
 			if(resp.result == true){
-				alert("팀이 해체되엇습니다");
+				alert("팀이 해체되었습니다");
 				location.href = "./index.jsp" ;
 			} else {
 				alert("해체 실패");

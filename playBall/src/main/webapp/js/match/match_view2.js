@@ -63,11 +63,11 @@ function matchCancle(sessionMid,mid,serial,vs) {
 				}	
 			})
 		} else if ( vs == '매칭중' ) {
-			alert("댓글에서 매칭할 팀을 선정해주세요~");
+			alert("댓글에서 매칭할 팀을 선정해주세요");
 		}
   
     } else {
-	   alert("작성자만 변경 가능합니다~");
+	   alert("작성자만 변경 가능합니다");
     }
 }
 

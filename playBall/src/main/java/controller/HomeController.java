@@ -34,9 +34,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "goHome.home",method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView rankTeam(ModelAndView mv) {
-		System.out.println("팀랭킹 홈 들어옴");
+	
 		List<TeamVo> rank = HomeService.findTeamRank();
-		System.out.println(rank.size());
 		List<StadiumVo> stadiumList = HomeService.recentStadium();
 		List<MatchVo> matchList = HomeService.matchingView();
 		mv.addObject("rank",rank);

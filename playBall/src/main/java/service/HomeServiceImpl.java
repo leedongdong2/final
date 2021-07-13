@@ -31,7 +31,6 @@ public class HomeServiceImpl implements HomeService {
 
 	@Override
 	public List<TeamVo> findTeamRank() {
-		System.out.println("홈 서비스 들어옴");
 		List<TeamVo> teamRank = HomeMapper.findTeamRank();
 	    return teamRank;
 	}

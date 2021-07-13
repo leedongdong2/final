@@ -410,7 +410,6 @@ public int updateCancelVs(int serial,int replSerial) {
 		//게시판
 		r = mMapper.updateCancel(serial);
 	}
-	System.out.println(r);
 	return r;
 }
 

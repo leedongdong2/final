@@ -81,14 +81,11 @@ public class TeamServiceImpl implements TeamService {
 			 String tid = bringTid(serial);
 			 tVo = teamMapper.bringUserInfo(mid);
 			 tVo.setTid(tid);
-			 System.out.println("tid : "+tVo.getTid());
 			 insertTeam = teamMapper.insertTeamMember(tVo);
 			 if(insertTeam> 0) {
-				 System.out.println("멤버등록완료");
 				 insertTeam = 0;
 				 insertTeam = teamMapper.updateTid(tVo);
 				 int delete = teamMapper.deleteOtherJoin(mid);//
-					System.out.println("수락후 삭제갯수 : "+ delete);//
 				 if(insertTeam > 0) {
 					 TeamVo vo = countMember(tid);
 					 int cntMemberResult = cntMemberUpdate(vo);
@@ -211,12 +208,9 @@ public class TeamServiceImpl implements TeamService {
 			//검색어관련 총페이지 찾기
 			int totList = teamMapper.totListTeam(page);
 			page.setTotList(totList);
-			System.out.println(totList);
 			page.compute();
 			int totPage = page.getTotPage();
-			System.out.println("totPage : "+ totPage);
 			list = teamMapper.selectTeam(page);
-			System.out.println(list.get(0).getPic());
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
@@ -245,7 +239,6 @@ public class TeamServiceImpl implements TeamService {
 		boolean bool = false;
 		TeamMemberVo jVo = new TeamMemberVo();
 		String tid = bringTid(serial);
-		System.out.println("가져온 tid : "+ tid);
 		jVo.setTid(tid);
 		jVo.setMid(mid);
 		r = teamMapper.checkJoinList(jVo);
@@ -267,12 +260,8 @@ public class TeamServiceImpl implements TeamService {
 			 String tid = bringTid(serial);
 			 tVo = teamMapper.bringUserInfo(mid);
 			 tVo.setTid(tid);
-			 System.out.println("tid : "+tVo.getTid());
-			 System.out.println("mid : "+tVo.getMid());
-			 System.out.println("mType : "+tVo.getmType());
 			 insertJoin = teamMapper.insertJoinMember(tVo);
 			 if(insertJoin> 0) {
-				 System.out.println("가입신청완료");
 				 bool = true;
 			 }else {
 				 bool = false;
@@ -291,10 +280,8 @@ public class TeamServiceImpl implements TeamService {
 			//검색어관련 총페이지 찾기
 			int totList = teamMapper.totListJoin(tid);
 			page.setTotList(totList);
-			System.out.println(totList);
 			page.compute();
 			int totPage = page.getTotPage();
-			System.out.println("totPage : "+ totPage);
 			page.setFindStr(tid);
 			list = teamMapper.selectJoinList(page);
 		}catch(Exception ex) {
@@ -314,10 +301,8 @@ public class TeamServiceImpl implements TeamService {
 		int update = teamMapper.acceptMember(tvo);
 		update = teamMapper.updateTid(tvo);
 		if(update>0) {
-			System.out.println("가입자 정보 변경 완료");
 			try {
 				int delete = teamMapper.deleteOtherJoin(mid);
-				System.out.println("수락후 삭제갯수 : "+ delete);
 				try {
 					TeamVo vo = countMember(tid);
 					int cntMemberResult = cntMemberUpdate(vo);
@@ -335,7 +320,6 @@ public class TeamServiceImpl implements TeamService {
 				bool = false;
 			}
 		}else {
-			System.out.println("가입자 정보 변경 실패");
 			bool = false;
 		}
 		return bool;
@@ -356,7 +340,6 @@ public class TeamServiceImpl implements TeamService {
 		tvo.setTid(tid);
 		tvo.setMid(mid);
 		delete = teamMapper.rejectJoinMember(tvo);
-		System.out.println("Join delete : "+delete);
 		return delete;
 	}//teammember테이블에서 삭제
 	
